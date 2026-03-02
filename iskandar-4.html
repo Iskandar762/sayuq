@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanical Keyboard Case - Store</title>
+    <style>
+        /* Gaya Dasar */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            /* Centering Logic */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        a { color: #0000EE; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Full Width Top Nav */
+        .top-nav {
+            background-color: #222; 
+            padding: 8px 0;
+            width: 100%;
+            width: 900px;
+        }
+
+        .top-nav-inner {
+            max-width: 940px; /* Matches container (900px + 40px padding) */
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 20px;
+        }
+
+        .top-nav a {
+            margin-left: 20px;
+            font-size: 11px;
+            color: #bbb;
+        }
+
+        .top-nav a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Main Content Container */
+        .container {
+            width: 900px; /* Fixed centered width */
+            background-color: #fff;
+            padding: 0 20px 20px 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-sizing: border-box; /* Ensures padding doesn't add to width */
+        }
+
+        header {
+            text-align: left;
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo h1 { 
+            margin: 10px 0; 
+            font-size: 48px; 
+            color: #333; 
+        }
+
+        .main-nav {
+            background: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .main-nav a { 
+            margin-right: 20px; 
+            font-weight: bold; 
+            color: #555; 
+        }
+
+        /* Product Details */
+        .product-title { font-size: 24px; margin-bottom: 5px; margin-top: 10px; }
+        .artist { margin-bottom: 20px; color: #555; }
+
+        .product-content {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .product-image img {
+            width: 300px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .product-description { flex: 1; }
+
+        .price {
+            color: red;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .buttons {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            display: inline-flex;
+            padding: 12px 16px;
+            border-radius: 4px;
+            gap: 10px;
+            background: #fff;
+}
+        
+        button:hover { background: #e0e0e0; }
+
+        .details-table { width: 100%; border-collapse: collapse; }
+        .details-table td { padding: 5px 0; border-bottom: none; }
+        .label { font-weight: bold; width: 140px; }
+
+        /* Similar Products */
+        .similar-section h3 { border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-top: 30px; }
+        
+        .similar-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            width: 22%;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+        }
+
+        .card img { 
+            width: 100%; 
+            height: 120px; 
+            object-fit: contain;
+            margin-bottom: 10px; 
+        }
+
+        .card-title { 
+            font-size: 13px; 
+            font-weight: bold;
+            margin-bottom: 10px; 
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-btns { margin-top: auto; }
+        .card-btns button { padding: 4px 8px; font-size: 11px; margin: 2px; }
+
+        /* Full Width Footer */
+        footer {
+            background: #333;
+            color: #ccc;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            width: 100%;
+            width: 860px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <div class="top-nav-inner">
+        <a href="#">My Account</a>
+        <a href="#">Wish List</a>
+        <a href="#">Shopping Cart</a>
+        <a href="#">Checkout</a>
+    </div>
+</nav>
+
+<div class="container">
+    <header>
+        <div class="logo"><h1>Mechanical Keyboard Case</h1></div>
+    </header>
+
+    <nav class="main-nav">
+        <a href="#">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">Product</a>
+        <a href="#">Software</a>
+    </nav>
+
+    <div class="product-title">60HE (v2) Aluminum Case</div>
+    <div class="artist">By <a href="https://wooting.io/" target="_blank">Wooting.io</a></div>
+
+    <div class="product-content">
+        <div class="product-image">
+            <img src="keyboard case 5.jpeg" alt="Wooting Aluminum Case" onerror="this.src='https://via.placeholder.com/300x200?text=Product+Image'">
+        </div>
+        <div class="product-description">
+            <p>The Wooting aluminium case provides a solid, premium shell for your keyboard. It keeps the familiar 60HE design while adding new things, like interchangeable strap mounts and a refined anodized finish for lasting durability and a clean look.</p>
+            
+            <div class="price">RM 355.00</div>
+
+            <div class="buttons">
+                <button>Add to Wish List</button>
+                <button>Add to Shopping Cart</button>
+            </div>
+
+            <h3>Product Details</h3>
+            <hr>
+            <table class="details-table">
+                <tr><td class="label">Material:</td><td>Solid Aluminium case, silicone feet, nylon strap</td></tr>
+                <tr><td class="label">Weight:</td><td>542 gram</td></tr>
+                <tr><td class="label">Dimensions:</td><td>305mm x 115mm (Outer)</td></tr>
+                <tr>
+                <td class="label">Colors:</td>
+                <td><a href="https://wooting.io/product/wooting-60he-v2-aluminum-case?Color=Silver">Black and Silver</a></td>
+                </tr>
+                <tr>
+                <td class="label">USB Port Location:</td>
+                <td><a href="usb-location.html">Left Side</a></td>
+                </tr>
+                <tr>
+                <td class="label">Safety:</td>
+                <td><a href="safety-info.html">Built-in protection for electronics</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="similar-section">
+        <h3>Similar Products</h3>
+        <div class="similar-grid">
+            <div class="card">
+                <img src="keyboard case 1.jpeg" alt="Alumaze60" onerror="this.src='https://via.placeholder.com/150x100?text=Case+1'">
+                <a href="#" class="card-title">Alumaze60</a>
+                <div class="card-btns">
+                    <button>View</button><button>Wish</button><button>Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="keyboard case 2.jpeg" alt="OW60" onerror="this.src='https://via.placeholder.com/150x100?text=Case+2'">
+                <a href="#" class="card-title">OW60</a>
+                <div class="card-btns">
+                    <button>View</button><button>Wish</button><button>Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="keyboard case 3.jpeg" alt="Optimum Case" onerror="this.src='https://via.placeholder.com/150x100?text=Case+3'">
+                <a href="#" class="card-title">Optimum Case</a>
+                <div class="card-btns">
+                    <button>View</button><button>Wish</button><button>Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="keyboard case 4.jpeg" alt="80HE Plastic Case" onerror="this.src='https://via.placeholder.com/150x100?text=Case+4'">
+                <a href="#" class="card-title">80HE Plastic Case</a>
+                <div class="card-btns">
+                    <button>View</button><button>Wish</button><button>Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    Copyright &copy; 2026 Iskandar Zulkarnain.
+</footer>
+
+</body>
+</html>

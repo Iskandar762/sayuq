@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Audio Player</title>
+</head>
+<body>
+<audio id="bgMusic" autoplay loop>
+  <source src="Moonlight.mpeg" type="audio/mpeg">
+</audio>
+
+<script>
+const audio = document.getElementById("bgMusic");
+audio.volume = 0; // mula dengan senyap
+
+// Fade-in bila mula main
+let vol = 0;
+const fadeIn = setInterval(() => {
+  if (vol < 0.8) {
+    vol += 0.02;
+    audio.volume = vol;
+  } else {
+    clearInterval(fadeIn);
+  }
+}, 200);
+
+// Fade-out bila page unload
+window.addEventListener("beforeunload", () => {
+  let volOut = audio.volume;
+  const fadeOut = setInterval(() => {
+    if (volOut > 0.05) {
+      volOut -= 0.05;
+      audio.volume = volOut;
+    } else {
+      clearInterval(fadeOut);
+      audio.pause();
+    }
+  }, 200);
+});
+</script>
+</body>
+</html>

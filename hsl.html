@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSL Color Model Example</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .color-box {
+        width: 150px;
+        height: 150px;
+        border: 2px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    /* Contoh warna HSL */
+    .red {
+        background-color: hsl(0, 100%, 50%);   /* Merah */
+    }
+
+    .green {
+        background-color: hsl(120, 100%, 50%); /* Hijau */
+    }
+
+    .blue {
+        background-color: hsl(240, 100%, 50%); /* Biru */
+    }
+
+    .purple {
+        background-color: hsl(300, 100%, 50%); /* Ungu */
+    }
+</style>
+</head>
+<body>
+
+<div class="color-box red">HSL(0,100%,50%)</div>
+<div class="color-box green">HSL(120,100%,50%)</div>
+<div class="color-box blue">HSL(240,100%,50%)</div>
+<div class="color-box purple">HSL(300,100%,50%)</div>
+
+</body>
+</html>

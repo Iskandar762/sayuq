@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kotak Hover Warna</title>
+<style>
+    .kotak {
+        width: 200px;
+        height: 150px;
+        background-color: yellow; /* warna asal */
+        border: 2px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+        color: black;
+        cursor: pointer;
+
+        /* Smooth transition untuk warna */
+        transition: background-color 4s;
+    }
+
+    /* Bila cursor letak atas kotak */
+    .kotak:hover {
+        background-color: red; /* warna semasa hover */
+    }
+</style>
+</head>
+<body>
+
+<div class="kotak">
+    Letak Cursor Saya
+</div>
+
+</body>
+</html>

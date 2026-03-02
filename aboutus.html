@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | MI&ISK</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --accent: #00e5b4;
+  --gold: #c9a84c;
+  --bg: #06080b;
+  --surface: #0d1117;
+  --line: rgba(255,255,255,0.07);
+  --dim: #5a6474;
+}
+
+body {
+  background: var(--bg);
+  color: #e8eaf0;
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CURSOR */
+.cursor {
+  width: 12px; height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.5;
+  mix-blend-mode: difference;
+  transition: all 0.35s cubic-bezier(0.23,1,0.32,1);
+}
+
+/* BG GLOW */
+.bg-canvas {
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 20%, rgba(0,229,180,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* NAV */
+nav {
+  position: fixed; width: 100%;
+  padding: 28px 8%;
+  display: flex; justify-content: space-between; align-items: center;
+  background: linear-gradient(to bottom, rgba(6,8,11,0.95), transparent);
+  backdrop-filter: blur(2px);
+  z-index: 100;
+}
+
+.brand {
+  font-family: 'Bebas Neue';
+  font-size: 1.5rem;
+  letter-spacing: 8px;
+  color: var(--gold);
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--dim);
+  font-family: 'DM Mono';
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* PAGE */
+.about-wrapper {
+  min-height: 100vh;
+  padding: 160px 8% 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* TITLE */
+.title-area {
+  text-align: center;
+  margin-bottom: 90px;
+}
+
+.title-eyebrow {
+  font-family: 'DM Mono';
+  font-size: 0.65rem;
+  letter-spacing: 5px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.title-eyebrow::before,
+.title-eyebrow::after {
+  content: '';
+  width: 40px; height: 1px;
+  background: var(--accent);
+  opacity: 0.4;
+}
+
+.title-area h1 {
+  font-family: 'Bebas Neue';
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  letter-spacing: 6px;
+  line-height: 1;
+  color: #fff;
+}
+
+.title-area h1 span {
+  -webkit-text-stroke: 1px var(--gold);
+  color: transparent;
+}
+
+.title-sub {
+  font-family: 'DM Mono';
+  font-size: 0.75rem;
+  color: var(--dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+
+/* GRID */
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2px;
+  width: 100%;
+  max-width: 1000px;
+  background: var(--line);
+}
+
+/* CARD */
+.card {
+  background: var(--bg);
+  padding: 50px 44px;
+  text-decoration: none;
+  color: #e8eaf0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+  transition: background 0.4s;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,229,180,0.04), rgba(201,168,76,0.03));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.card:hover::before { opacity: 1; }
+.card:hover { background: var(--surface); }
+
+/* top accent line on hover */
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.23,1,0.32,1);
+}
+.card:hover::after { transform: scaleX(1); }
+
+/* PHOTO */
+.img-wrap {
+  position: relative;
+  width: 130px; height: 130px;
+  margin-bottom: 28px;
+}
+
+.img-wrap img {
+  width: 100%; height: 100%;
+  border-radius: 4px;
+  object-fit: cover;
+  object-position: top;
+  filter: grayscale(15%) contrast(1.05);
+  display: block;
+  transition: filter 0.4s, transform 0.4s;
+}
+.card:hover .img-wrap img {
+  filter: grayscale(0%) contrast(1.1);
+  transform: scale(1.04);
+}
+
+/* corner brackets on photo */
+.img-wrap::before,
+.img-wrap::after {
+  content: '';
+  position: absolute;
+  width: 16px; height: 16px;
+  pointer-events: none;
+  z-index: 2;
+}
+.img-wrap::before {
+  top: -5px; left: -5px;
+  border-top: 1.5px solid var(--accent);
+  border-left: 1.5px solid var(--accent);
+}
+.img-wrap::after {
+  bottom: -5px; right: -5px;
+  border-bottom: 1.5px solid var(--gold);
+  border-right: 1.5px solid var(--gold);
+}
+
+/* NAME */
+.card-name {
+  font-family: 'Bebas Neue';
+  font-size: 1.8rem;
+  letter-spacing: 4px;
+  color: var(--gold);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.card-role {
+  font-family: 'DM Mono';
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-bottom: 36px;
+}
+
+/* DIVIDER */
+.card-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+  margin-bottom: 32px;
+}
+
+/* ============ JOBSHEET STATUS GRID ============ */
+.js-status-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.js-status-label {
+  font-family: 'DM Mono';
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  color: var(--dim);
+  text-transform: uppercase;
+}
+
+.js-summary {
+  font-family: 'DM Mono';
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  color: var(--dim);
+}
+
+.js-summary span {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* 3x3 dot grid */
+.js-dot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.js-dot-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 10px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  transition: border-color 0.3s, background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.js-dot-item.is-done {
+  border-color: rgba(0,229,180,0.2);
+}
+
+.js-dot-item.is-done:hover {
+  background: rgba(0,229,180,0.05);
+  border-color: var(--accent);
+}
+
+.js-dot-item.is-wip {
+  border-color: rgba(201,168,76,0.15);
+}
+
+.js-dot-item.is-wip:hover {
+  background: rgba(201,168,76,0.04);
+  border-color: var(--gold);
+}
+
+/* icon */
+.dot-icon {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.is-done .dot-icon {
+  background: rgba(0,229,180,0.12);
+  border: 1px solid rgba(0,229,180,0.4);
+}
+
+.is-wip .dot-icon {
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.3);
+}
+
+/* checkmark for done */
+.is-done .dot-icon::before,
+.is-done .dot-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.is-done .dot-icon::before {
+  width: 5px; height: 2px;
+  bottom: 10px; left: 5px;
+  transform: rotate(45deg);
+}
+.is-done .dot-icon::after {
+  width: 9px; height: 2px;
+  bottom: 11px; left: 8px;
+  transform: rotate(-45deg);
+}
+
+/* clock for wip */
+.is-wip .dot-icon::before {
+  content: '';
+  position: absolute;
+  width: 10px; height: 10px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+}
+.is-wip .dot-icon::after {
+  content: '';
+  position: absolute;
+  width: 1.5px; height: 4px;
+  background: var(--gold);
+  border-radius: 1px;
+  bottom: 12px; left: 13.5px;
+  transform-origin: bottom center;
+  transform: rotate(-30deg);
+}
+
+/* js number label */
+.dot-label {
+  font-family: 'DM Mono';
+  font-size: 0.58rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.is-done .dot-label { color: var(--accent); }
+.is-wip  .dot-label { color: var(--gold); opacity: 0.7; }
+
+/* status text */
+.dot-status {
+  font-family: 'DM Mono';
+  font-size: 0.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.is-done .dot-status { color: rgba(0,229,180,0.5); }
+.is-wip  .dot-status { color: rgba(201,168,76,0.4); }
+
+/* VISIT BUTTON */
+.card-cta {
+  margin-top: 30px;
+  font-family: 'DM Mono';
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--dim);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.3s;
+}
+
+.cta-arrow {
+  width: 28px; height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.cta-arrow svg {
+  width: 11px; height: 11px;
+  stroke: var(--dim);
+  transition: all 0.3s;
+}
+
+.card:hover .card-cta { color: var(--accent); }
+.card:hover .cta-arrow { border-color: var(--accent); background: var(--accent); }
+.card:hover .cta-arrow svg { stroke: #000; transform: translate(1px,-1px); }
+
+/* FOOTER */
+footer {
+  margin-top: 80px;
+  font-family: 'DM Mono';
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: var(--dim);
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+/* REVEAL ANIM */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 0.8s ease forwards;
+}
+@keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+.d1 { animation-delay: 0.1s; }
+.d2 { animation-delay: 0.25s; }
+.d3 { animation-delay: 0.4s; }
+
+@media (max-width: 800px) {
+  .student-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-canvas"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav>
+  <div class="brand">MI&ISK</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+  </div>
+</nav>
+
+<section class="about-wrapper">
+
+  <!-- TITLE -->
+  <div class="title-area fade-up d1">
+    <div class="title-eyebrow">The Minds Behind The Logic</div>
+    <h1>ABOUT <span>US</span></h1>
+    <p class="title-sub">MI&ISK — Session 2024/2025</p>
+  </div>
+
+  <!-- CARDS -->
+  <div class="student-grid fade-up d2">
+
+    <!-- MIOR -->
+    <a href="mior.html" class="card">
+      <div class="img-wrap">
+        <img src="MIOR.jpeg" alt="Mior">
+      </div>
+      <div class="card-name">Mior Ikmal</div>
+      <div class="card-role">System Developer</div>
+      <div class="card-divider"></div>
+
+      <div class="js-status-header">
+        <span class="js-status-label">Jobsheets</span>
+        <span class="js-summary"><span>6</span> / 9 Done</span>
+      </div>
+
+      <div class="js-dot-grid">
+        <div class="js-dot-item is-done">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 01</div>
+          <div class="dot-status">Done</div>
+        </div>
+        <div class="js-dot-item is-done">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 02</div>
+          <div class="dot-status">Done</div>
+        </div>
+        <div class="js-dot-item is-done">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 03</div>
+          <div class="dot-status">Done</div>
+        </div>
+        <div class="js-dot-item is-done">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 04</div>
+          <div class="dot-status">Done</div>
+        </div>
+        <div class="js-dot-item is-done">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 05</div>
+          <div class="dot-status">Done</div>
+        </div>
+        <div class="js-dot-item is-done">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 06</div>
+          <div class="dot-status">Done</div>
+        </div>
+        <div class="js-dot-item is-wip">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 07</div>
+          <div class="dot-status">WIP</div>
+        </div>
+        <div class="js-dot-item is-wip">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 08</div>
+          <div class="dot-status">WIP</div>
+        </div>
+        <div class="js-dot-item is-wip">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 09</div>
+          <div class="dot-status">WIP</div>
+        </div>
+      </div>
+
+      <div class="card-cta">
+        View Profile
+        <div class="cta-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- ISKANDAR -->
+    <a href="iskandar.html" class="card">
+      <div class="img-wrap">
+        <img src="is.jpeg" alt="Iskandar">
+      </div>
+      <div class="card-name">Iskandar Z.</div>
+      <div class="card-role">System Developer</div>
+      <div class="card-divider"></div>
+
+      <div class="js-status-header">
+        <span class="js-status-label">Jobsheets</span>
+        <span class="js-summary"><span>6</span> / 9 Done</span>
+      </div>
+
+      <div class="js-dot-grid">
+        <div class="js-dot-item is-done">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 01</div>
+          <div class="dot-status">Done</div>
+        </div>
+        <div class="js-dot-item is-done">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 02</div>
+          <div class="dot-status">Done</div>
+        </div>
+        <div class="js-dot-item is-done">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 03</div>
+          <div class="dot-status">Done</div>
+        </div>
+        <div class="js-dot-item is-done">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 04</div>
+          <div class="dot-status">Done</div>
+        </div>
+        <div class="js-dot-item is-done">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 05</div>
+          <div class="dot-status">Done</div>
+        </div>
+        <div class="js-dot-item is-done">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 06</div>
+          <div class="dot-status">Done</div>
+        </div>
+        <div class="js-dot-item is-wip">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 07</div>
+          <div class="dot-status">WIP</div>
+        </div>
+        <div class="js-dot-item is-wip">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 08</div>
+          <div class="dot-status">WIP</div>
+        </div>
+        <div class="js-dot-item is-wip">
+          <div class="dot-icon"></div>
+          <div class="dot-label">JS 09</div>
+          <div class="dot-status">WIP</div>
+        </div>
+      </div>
+
+      <div class="card-cta">
+        View Profile
+        <div class="cta-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <footer class="fade-up d3">© 2025 MI&ISK • TVET MARA LUMUT</footer>
+
+</section>
+
+<iframe src="player.html" style="display:none;"></iframe>
+
+<script>
+// Cursor
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx - 6 + 'px';
+  cur.style.top  = my - 6 + 'px';
+});
+
+(function anim() {
+  rx += (mx - rx - 18) * 0.15;
+  ry += (my - ry - 18) * 0.15;
+  ring.style.left = rx + 'px';
+  ring.style.top  = ry + 'px';
+  requestAnimationFrame(anim);
+})();
+
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cur.style.transform = 'scale(2)';
+    ring.style.transform = 'scale(1.5)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cur.style.transform = 'scale(1)';
+    ring.style.transform = 'scale(1)';
+  });
+});
+
+cur.style.transition = 'transform 0.15s ease';
+
+</script>
+</body>
+</html>

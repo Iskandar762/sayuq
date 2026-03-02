@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mior | MI&ISK</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #c9a84c;
+  --accent: #00e5b4;
+  --bg: #06080b;
+  --surface: #0d1117;
+  --line: rgba(255,255,255,0.07);
+  --text-dim: #5a6474;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: #e8eaf0;
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  width: 12px; height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease, opacity 0.2s;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  mix-blend-mode: difference;
+  opacity: 0.5;
+}
+
+/* NAV */
+nav {
+  padding: 28px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(to bottom, rgba(6,8,11,0.95), transparent);
+  backdrop-filter: blur(2px);
+}
+
+.brand {
+  font-family: 'Bebas Neue';
+  font-size: 1.5rem;
+  letter-spacing: 8px;
+  color: var(--gold);
+}
+
+.nav-links { display: flex; gap: 40px; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-dim);
+  font-family: 'DM Mono';
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* ============ HERO ============ */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 8%;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,229,180,0.07) 0%, transparent 70%);
+  top: 50%; left: 55%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-left { position: relative; z-index: 2; }
+
+.hero-eyebrow {
+  font-family: 'DM Mono';
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 40px; height: 1px;
+  background: var(--accent);
+}
+
+.hero-name {
+  font-family: 'Bebas Neue';
+  font-size: clamp(4rem, 10vw, 8rem);
+  line-height: 0.9;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+.hero-name span {
+  -webkit-text-stroke: 1px var(--gold);
+  color: transparent;
+}
+
+.hero-desc {
+  font-family: 'DM Mono';
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+  max-width: 380px;
+  margin-bottom: 40px;
+}
+
+.hero-stats { display: flex; gap: 40px; }
+
+.stat-item { display: flex; flex-direction: column; }
+
+.stat-num {
+  font-family: 'Bebas Neue';
+  font-size: 2.5rem;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: 'DM Mono';
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.hero-right {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-frame {
+  position: relative;
+  width: 340px;
+  height: 420px;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  filter: grayscale(20%) contrast(1.1);
+  display: block;
+}
+
+.photo-frame::before,
+.photo-frame::after {
+  content: '';
+  position: absolute;
+  width: 30px; height: 30px;
+  pointer-events: none;
+}
+.photo-frame::before {
+  top: -8px; left: -8px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+.photo-frame::after {
+  bottom: -8px; right: -8px;
+  border-bottom: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+}
+
+.photo-badge {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 16px 20px;
+  border-radius: 4px;
+  font-family: 'DM Mono';
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+.photo-badge strong {
+  display: block;
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-family: 'Bebas Neue';
+  letter-spacing: 3px;
+  margin-bottom: 2px;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono';
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  animation: bounce 2s infinite;
+}
+
+.scroll-hint::after {
+  content: '';
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--text-dim), transparent);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============ JOBSHEET SECTION ============ */
+.jobs-section {
+  padding: 120px 8% 160px;
+  position: relative;
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 80px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 30px;
+}
+
+.section-title {
+  font-family: 'Bebas Neue';
+  font-size: clamp(3rem, 6vw, 5rem);
+  letter-spacing: 4px;
+  color: #fff;
+  line-height: 1;
+}
+
+.section-title span {
+  -webkit-text-stroke: 1px var(--text-dim);
+  color: transparent;
+}
+
+.section-meta {
+  font-family: 'DM Mono';
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  text-align: right;
+}
+
+/* ============ JOBSHEET GRID ============ */
+.js-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--line);
+}
+
+.js-card {
+  background: var(--bg);
+  padding: 40px 35px;
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+  transition: background 0.4s;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.js-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,229,180,0.04), rgba(201,168,76,0.04));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.js-card:hover::before { opacity: 1; }
+
+.js-card::after {
+  content: '';
+  position: absolute;
+  top: -100%; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(to bottom, transparent 40%, rgba(0,229,180,0.03) 50%, transparent 60%);
+  transition: top 0.6s ease;
+}
+.js-card:hover::after { top: 100%; }
+.js-card:hover { background: #0d1117; }
+
+.js-num {
+  font-family: 'Bebas Neue';
+  font-size: 4.5rem;
+  line-height: 1;
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  bottom: 20px; right: 25px;
+  letter-spacing: 2px;
+  pointer-events: none;
+  transition: color 0.4s;
+}
+.js-card:hover .js-num { color: rgba(0,229,180,0.07); }
+
+.js-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.js-label-text {
+  font-family: 'DM Mono';
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.js-status {
+  font-family: 'DM Mono';
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.js-status.done {
+  background: rgba(0,229,180,0.1);
+  color: var(--accent);
+  border: 1px solid rgba(0,229,180,0.3);
+}
+
+.js-status.progress {
+  background: rgba(212,175,55,0.1);
+  color: var(--gold);
+  border: 1px solid rgba(212,175,55,0.3);
+}
+
+.js-title {
+  font-family: 'Syne';
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  transition: color 0.3s;
+}
+.js-card:hover .js-title { color: var(--accent); }
+
+.js-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+
+.js-btn {
+  font-family: 'DM Mono';
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--text-dim);
+  padding: 10px 20px;
+  border-radius: 2px;
+  cursor: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.js-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0,229,180,0.15), transparent);
+  transition: left 0.4s;
+}
+.js-btn:hover::before { left: 100%; }
+.js-card:hover .js-btn { border-color: var(--accent); color: var(--accent); }
+
+.js-arrow {
+  width: 32px; height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.js-card:hover .js-arrow { border-color: var(--accent); background: var(--accent); }
+
+.js-arrow svg {
+  width: 14px; height: 14px;
+  stroke: var(--text-dim);
+  transition: stroke 0.3s, transform 0.3s;
+}
+.js-card:hover .js-arrow svg { stroke: #000; transform: translate(2px, -2px); }
+
+.js-card.featured { grid-column: span 2; min-height: 320px; }
+.js-card.featured .js-title { font-size: 2.2rem; }
+.js-card.featured .js-num { font-size: 7rem; bottom: 10px; right: 30px; }
+
+/* ============ MODAL ============ */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal.active { display: flex; }
+
+.modal-box {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 48px 40px;
+  max-width: 420px;
+  width: 90%;
+  position: relative;
+  animation: modalIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--accent));
+}
+
+.modal-tag {
+  font-family: 'DM Mono';
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.modal-title {
+  font-family: 'Bebas Neue';
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.modal-body {
+  font-family: 'DM Mono';
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.modal-close {
+  font-family: 'DM Mono';
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  padding: 12px 24px;
+  cursor: none;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.modal-close:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ============ FOOTER ============ */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 30px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-brand {
+  font-family: 'Bebas Neue';
+  font-size: 1.2rem;
+  letter-spacing: 6px;
+  color: var(--text-dim);
+}
+
+.footer-copy {
+  font-family: 'DM Mono';
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+}
+
+/* ============ ANIMATIONS ============ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-eyebrow { animation-delay: 0.1s; }
+.hero-name    { animation-delay: 0.25s; }
+.hero-desc    { animation-delay: 0.4s; }
+.hero-stats   { animation-delay: 0.55s; }
+.hero-right   { animation-delay: 0.3s; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; text-align: center; padding-top: 120px; gap: 60px; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-desc { margin: 0 auto 40px; }
+  .hero-stats { justify-content: center; }
+  .hero-right { display: none; }
+  .js-grid { grid-template-columns: 1fr; }
+  .js-card.featured { grid-column: span 1; }
+  .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="brand">MI&ISK</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="aboutus.html">About Us</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow fade-up"></div>
+    <h1 class="hero-name fade-up">MIOR<br><span>IKMAL</span></h1>
+    <p class="hero-desc fade-up">Focuses on system development and troubleshooting. Building robust solutions one jobsheet at a time.</p>
+    <div class="hero-stats fade-up">
+      <div class="stat-item">
+        <span class="stat-num">06</span>
+        <span class="stat-label">Completed</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">03</span>
+        <span class="stat-label">In Progress</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">09</span>
+        <span class="stat-label">Total</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right fade-up">
+    <div class="photo-frame">
+      <img src="MIOR.jpeg" alt="Mior">
+      <div class="photo-badge">
+        <strong>ACTIVE</strong>
+        MI&ISK Member
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- JOBSHEETS -->
+<section class="jobs-section">
+  <div class="section-header">
+    <h2 class="section-title">JOB<br><span>SHEETS</span></h2>
+    <div class="section-meta">
+      Session 2024/2025<br>
+      Mior — MI&ISK
+    </div>
+  </div>
+
+  <div class="js-grid">
+
+    <div class="js-card featured" onclick="playSoundAndGo('jobsheet-1.html', 1)">
+      <div>
+        <div class="js-label">
+          <span class="js-label-text">Task 01</span>
+          <span class="js-status done">Done</span>
+        </div>
+        <div style="height:20px"></div>
+        <div class="js-title">Jobsheet 1</div>
+      </div>
+      <div class="js-bottom">
+        <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('jobsheet-1.html',1)">View Work</button>
+        <div class="js-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </div>
+      </div>
+      <div class="js-num">01</div>
+    </div>
+
+    <div class="js-card" onclick="playSoundAndGo('jobsheet-2.html', 1)">
+      <div>
+        <div class="js-label">
+          <span class="js-label-text">Task 02</span>
+          <span class="js-status done">Done</span>
+        </div>
+        <div style="height:20px"></div>
+        <div class="js-title">Jobsheet 2</div>
+      </div>
+      <div class="js-bottom">
+        <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('jobsheet-2.html',1)">View Work</button>
+        <div class="js-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </div>
+      </div>
+      <div class="js-num">02</div>
+    </div>
+
+    <div class="js-card" onclick="playSoundAndGo('jobsheet-3.html', 1)">
+      <div>
+        <div class="js-label">
+          <span class="js-label-text">Task 03</span>
+          <span class="js-status done">Done</span>
+        </div>
+        <div style="height:20px"></div>
+        <div class="js-title">Jobsheet 3</div>
+      </div>
+      <div class="js-bottom">
+        <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('jobsheet-3.html',1)">View Work</button>
+        <div class="js-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </div>
+      </div>
+      <div class="js-num">03</div>
+    </div>
+
+    <div class="js-card" onclick="playSoundAndGo('jobsheet-4.html', 1)">
+      <div>
+        <div class="js-label">
+          <span class="js-label-text">Task 04</span>
+          <span class="js-status done">Done</span>
+        </div>
+        <div style="height:20px"></div>
+        <div class="js-title">Jobsheet 4</div>
+      </div>
+      <div class="js-bottom">
+        <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('jobsheet-4.html',1)">View Work</button>
+        <div class="js-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </div>
+      </div>
+      <div class="js-num">04</div>
+    </div>
+
+    <div class="js-card" onclick="playSoundAndGo('jobsheet-5.html', 1)">
+      <div>
+        <div class="js-label">
+          <span class="js-label-text">Task 05</span>
+          <span class="js-status done">Done</span>
+        </div>
+        <div style="height:20px"></div>
+        <div class="js-title">Jobsheet 5</div>
+      </div>
+      <div class="js-bottom">
+        <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('jobsheet-5.html',1)">View Work</button>
+        <div class="js-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </div>
+      </div>
+      <div class="js-num">05</div>
+    </div>
+
+    <div class="js-card featured" onclick="playSoundAndGo('jobsheet-6.html', 1)">
+      <div>
+        <div class="js-label">
+          <span class="js-label-text">Task 06</span>
+          <span class="js-status done">Done</span>
+        </div>
+        <div style="height:20px"></div>
+        <div class="js-title">Jobsheet 6</div>
+      </div>
+      <div class="js-bottom">
+        <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('jobsheet-6.html',1)">View Work</button>
+        <div class="js-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </div>
+      </div>
+      <div class="js-num">06</div>
+    </div>
+
+    <div class="js-card" onclick="showModal('Jobsheet 7')">
+      <div>
+        <div class="js-label">
+          <span class="js-label-text">Task 07</span>
+          <span class="js-status progress">In Progress</span>
+        </div>
+        <div style="height:20px"></div>
+        <div class="js-title">Jobsheet 7</div>
+      </div>
+      <div class="js-bottom">
+        <button class="js-btn" onclick="event.stopPropagation(); showModal('Jobsheet 7')">View Work</button>
+        <div class="js-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </div>
+      </div>
+      <div class="js-num">07</div>
+    </div>
+
+    <div class="js-card" onclick="showModal('Jobsheet 8')">
+      <div>
+        <div class="js-label">
+          <span class="js-label-text">Task 08</span>
+          <span class="js-status progress">In Progress</span>
+        </div>
+        <div style="height:20px"></div>
+        <div class="js-title">Jobsheet 8</div>
+      </div>
+      <div class="js-bottom">
+        <button class="js-btn" onclick="event.stopPropagation(); showModal('Jobsheet 8')">View Work</button>
+        <div class="js-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </div>
+      </div>
+      <div class="js-num">08</div>
+    </div>
+
+    <div class="js-card" onclick="showModal('Jobsheet 9')">
+      <div>
+        <div class="js-label">
+          <span class="js-label-text">Task 09</span>
+          <span class="js-status progress">In Progress</span>
+        </div>
+        <div style="height:20px"></div>
+        <div class="js-title">Jobsheet 9</div>
+      </div>
+      <div class="js-bottom">
+        <button class="js-btn" onclick="event.stopPropagation(); showModal('Jobsheet 9')">View Work</button>
+        <div class="js-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </div>
+      </div>
+      <div class="js-num">09</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">MI&ISK</div>
+  <div class="footer-copy">© 2024 — Mior Profile</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modalBox">
+  <div class="modal-box">
+    <div class="modal-tag">Status Update</div>
+    <div class="modal-title" id="modalTitle">Jobsheet 7</div>
+    <p class="modal-body">This jobsheet is currently in progress. Check back soon — it will be available once completed.</p>
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<!-- AUDIO -->
+<audio id="ringtone1" src="done.mpeg" preload="auto"></audio>
+<audio id="ringtone2" src="notdone.mpeg" preload="auto"></audio>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursor.style.left = mouseX - 6 + 'px';
+  cursor.style.top  = mouseY - 6 + 'px';
+});
+
+function animRing() {
+  ringX += (mouseX - ringX - 18) * 0.15;
+  ringY += (mouseY - ringY - 18) * 0.15;
+  ring.style.left = ringX + 'px';
+  ring.style.top  = ringY + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+
+document.querySelectorAll('button, .js-card, a').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform = 'scale(2)';
+    ring.style.transform = 'scale(1.5)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.transform = 'scale(1)';
+    ring.style.transform = 'scale(1)';
+  });
+});
+
+// Navigation
+function playSoundAndGo(url, type) {
+  const sound = document.getElementById(type === 1 ? 'ringtone1' : 'ringtone2');
+  sound.currentTime = 0;
+  sound.play();
+  setTimeout(() => { window.location.href = url; }, 500);
+}
+
+// Modal
+function showModal(js) {
+  const sound = document.getElementById('ringtone2');
+  sound.currentTime = 0; sound.play();
+  document.getElementById('modalTitle').innerText = js;
+  document.getElementById('modalBox').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('modalBox').classList.remove('active');
+}
+
+document.getElementById('modalBox').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalBox')) closeModal();
+});
+
+// Staggered card reveal
+const cards = document.querySelectorAll('.js-card');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }, i * 80);
+      obs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+cards.forEach(card => {
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(20px)';
+  card.style.transition = 'opacity 0.6s ease, transform 0.6s ease, background 0.4s';
+  obs.observe(card);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rob Moore</title>
+    <style>
+        /* Dasar Halaman */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #d8d8d8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #cccccc;
+            min-height: 100vh;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        header {
+            background: linear-gradient(to bottom, #b5b5b5 0%, #888888 100%);
+            color: #333;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+            font-size: 1.2em;
+            border-bottom: 1px solid #777;
+        }
+
+        .list-group {
+            margin: 15px;
+            background-color: #fff;
+            border: 1px solid #999;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .list-item {
+            display: block; 
+            text-decoration: none;
+            padding: 12px 15px;
+            border-bottom: 1px solid #ccc;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .content-section {
+            padding: 0 15px 20px 15px;
+        }
+
+        .content-section h2 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .content-section p {
+            font-size: 0.9em;
+            line-height: 1.4;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        /* UPDATED: Removed float to let text fall underneath */
+        .profile-pic {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            display: block; /* Ensures it sits on its own line */
+            margin-bottom: 15px; 
+            border: 1px solid #999;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="phone-container">
+    <header>
+        Rob Moore
+    </header>
+
+    <div class="list-group">
+        <a href="https://en.wikipedia.org/wiki/Rob_Moore_(executive)" class="list-item">About</a>
+        <a href="https://www.oreateai.com/blog/rob-moore-and-sentinels-a-new-era-in-north-american-esports/054f8a863c3fb38d8a0ac0b538bff7a6" class="list-item">Blog</a>
+        <a href="https://shop.sentinels.gg/pages/contact-page" class="list-item">Contact</a>
+    </div>
+
+    <div class="list-group">
+        <a href="https://sentinels.gg/championships" class="list-item">Achievement</a>
+        <a href="https://sentinels.gg/" class="list-item">Investment</a>
+        <a href="https://sentinels.gg/partners" class="list-item">Partnership</a>
+        <a href="https://sentinels.gg/" class="list-item">Sentinel.gg</a>
+    </div>
+
+    <div class="content-section" id="about">
+        <h2>About</h2>
+        <p>
+            Rob Moore is the CEO and a primary investor in the esports organization Sentinels. He is widely recognized for transitioning a successful high-level career in Hollywood into the competitive gaming industry.
+        </p>
+
+        <img src="rob.jpeg" alt="Avatar" class="profile-pic">
+        <p>
+            Rob Moore’s achievements span a successful career as a high-level entertainment executive and his current role as a leader in the esports industry.
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

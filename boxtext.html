@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Box Shadow & Text Shadow Example</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        gap: 40px;
+        padding: 40px;
+        flex-wrap: wrap;
+    }
+
+    
+    .box-shadow {
+        width: 200px;
+        height: 150px;
+        background-color: #00e1ff;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        border-radius: 10px;
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.5); 
+        transition: box-shadow 0.3s ease;
+    }
+
+    
+    .box-shadow:hover {
+        box-shadow: 10px 10px 25px rgba(0,0,0,0.7);
+    }
+
+    .text-shadow {
+        font-size: 36px;
+        color: #ff4500;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.5); 
+    }
+</style>
+</head>
+<body>
+
+<div class="box-shadow">Box Shadow</div>
+
+<div class="text-shadow">Text Shadow</div>
+
+</body>
+</html>

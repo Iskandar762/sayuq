@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanical Keyboard Case - Customer Registration</title>
+    <style>
+        /* 1. Base Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            min-height: 100vh;
+        }
+
+        /* 2. Top Navigation Bar - Now spans full width but centers text */
+        .top-nav-bar {
+            background-color: #222; 
+            padding: 8px 0;
+            width: 900px; /* Stretch to edges */
+            display: flex;
+            justify-content: center;
+        }
+
+        .top-nav-container {
+            width: 900px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: right; /* Centered the nav text */
+            box-sizing: border-box;
+        }
+
+        .top-nav-bar a { 
+            margin: 0 15px; 
+            font-size: 12px; 
+            color: #bbb; 
+            text-decoration: none;
+        }
+        
+        .top-nav-bar a:hover { color: #fff; }
+
+        /* 3. Main Container */
+        .container {
+            width: 900px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            /* Removed bottom margin to connect with footer */
+        }
+
+        header {
+            text-align: left;
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        h1 { margin: 10px 0; font-size: 42px; }
+
+        .main-nav {
+            background: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .main-nav a { margin-right: 20px; font-weight: bold; color: #555; text-decoration: none; }
+
+        /* 4. Form Styling */
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 30px; }
+        h3 { color: #444; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        label { font-size: 14px; font-weight: bold; margin-bottom: 5px; }
+
+        input[type="text"], 
+        input[type="email"], 
+        input[type="password"],
+        input[type="date"],
+        select {
+            padding: 5px;
+            border: 1px solid #999;
+            border-radius: 2px;
+        }
+
+        .full-width { width: 100%; }
+        .half-width { width: 48%; min-width: 250px; } 
+
+        .radio-group { margin: 5px 0; font-size: 14px; }
+        .range-container { display: flex; align-items: center; gap: 10px; width: 300px; }
+
+        .submit-btn {
+            background-color: #cbdcf0; 
+            border: 1px solid #8ba8c7;
+            padding: 5px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover { background-color: #b0c9e6; }
+
+        .check-icon {
+            color: green;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* 5. Footer - Centered and gap removed */
+        footer {
+            background: #333;
+            color: #ccc;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 11px;
+            width: 900px; /* Matches container width */
+            margin-top: 0; /* Removes the gap between container and footer */
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-nav-bar">
+    <div class="top-nav-container">
+        <a href="#">My Account</a> 
+        <a href="#">Wish List</a> 
+        <a href="#">Shopping Cart</a> 
+        <a href="#">Checkout</a>
+    </div>
+</div>
+
+<div class="container">
+    <header>
+        <h1>Mechanical Keyboard Case</h1>
+    </header>
+
+    <nav class="main-nav">
+        <a href="#">Home</a> <a href="#">About Us</a> <a href="#">Product</a> <a href="#">Software</a>
+    </nav>
+
+    <h2>Customer Registration</h2>
+
+    <form>
+        <h3>1. User Info</h3>
+        <div class="form-row">
+            <div class="form-group half-width">
+                <label>First Name</label>
+                <input type="text">
+            </div>
+            <div class="form-group half-width">
+                <label>Last Name</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label>Email</label>
+                <input type="email" placeholder="example@email.com">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group half-width">
+                <label>Password</label>
+                <input type="password" placeholder="at least 8 characters">
+            </div>
+            <div class="form-group half-width">
+                <label>Password Repeat</label>
+                <input type="password" placeholder="at least 8 characters">
+            </div>
+        </div>
+
+        <h3>2. Location</h3>
+        <div class="form-group">
+            <label>Address</label>
+            <input type="text" class="full-width">
+        </div>
+        <div class="form-row">
+            <div class="form-group" style="flex: 2;">
+                <label>City</label>
+                <input type="text">
+            </div>
+            <div class="form-group" style="flex: 1;">
+                <label>State</label>
+                <input type="text">
+            </div>
+            <div class="form-group" style="flex: 1;">
+                <label>Zip</label>
+                <input type="text">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="text" placeholder="+60123456789">
+            </div>
+            <div class="form-group">
+                <label>Country</label>
+                <select>
+                    <option>Malaysia</option>
+                    <option>United States</option>
+                    <option>Canada</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Continent</label>
+            <div class="radio-group"><input type="radio" name="continent"> Asia</div>
+            <div class="radio-group"><input type="radio" name="continent"> Europe</div>
+            <div class="radio-group"><input type="radio" name="continent"> North America</div>
+        </div>
+
+        <h3>3. Personal Details</h3>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Birth Day</label>
+                <input type="date">
+            </div>
+            <div class="form-group">
+                <label>Favorite Keyboard Case Colour</label>
+                <input type="color" style="height: 30px; width: 60px;">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Interest In Keyboard Case</label>
+            <div class="range-container">
+                <span>Minimal</span>
+                <input type="range" min="1" max="100" style="flex: 1;">
+                <span>Love it!</span>
+            </div>
+        </div>
+
+        <h3>4. All Done</h3>
+        <div class="form-group">
+            <label style="font-weight: normal;">
+                <input type="checkbox"> I agree to the <a href="#">Terms of the Site</a>
+            </label>
+        </div>
+        
+        <button type="submit" class="submit-btn">
+            <span class="check-icon">✓</span> Sign me up!
+        </button>
+    </form>
+</div>
+
+<footer>
+    Copyright &copy; 2026 Iskandar Zulkarnain.
+</footer>
+
+</body>
+</html>
