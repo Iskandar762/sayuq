@@ -6,11 +6,15 @@
 <title>Mior & Iskandar | Digital Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="images/Logo bulat 3D dengan.jpeg">    
+
+<!-- ✅ Browser Tab Logo -->
+<link rel="icon" type="image/png" sizes="32x32" href="images/Logo bulat 3D dengan.jpeg">
+<link rel="icon" type="image/png" sizes="16x16" href="images/Logo bulat 3D dengan.jpeg">
+<link rel="apple-touch-icon" href="images/Logo bulat 3D dengan.jpeg">
 
 <style>
 :root {
-    --accent: #00ffcc; /* Emerald Neon */
+    --accent: #00ffcc;
     --gold: #d4af37;
     --dark-bg: #080c10;
     --card-bg: rgba(255, 255, 255, 0.03);
@@ -28,6 +32,7 @@ body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     overflow-x: hidden;
 }
+
 .bg-visual {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
@@ -42,7 +47,7 @@ body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-/* Background Animation */
+
 .bg-visual::before {
   content: "";
   position: absolute;
@@ -56,6 +61,7 @@ body {
   0%, 100% { opacity: 0.3; }
   50% { opacity: 0.6; }
 }
+
 .bg-visual::after {
   content: "";
   position: absolute;
@@ -68,7 +74,7 @@ body {
     transparent 20px
   );
 }
-/* Custom Navigation */
+
 nav {
     padding: 40px 6%;
     display: flex;
@@ -124,7 +130,6 @@ nav {
   width: 100%;
 }
 
-/* Audio Status Notification */
 #audio-status {
     position: fixed;
     bottom: 20px;
@@ -137,20 +142,17 @@ nav {
     z-index: 100;
 }
 
-/* Hero Content */
 .main-wrapper {
     display: flex;
     min-height: 100vh;
     align-items: center;
     padding: 0 8%;
     gap: 50px;
-    opacity: 0; /* Start hidden for animation */
+    opacity: 0;
 }
 
-/* Left Side: Text */
 .content-area {
     flex: 1;
-    z-index: 2;
 }
 
 .badge {
@@ -163,7 +165,6 @@ nav {
     font-weight: 700;
     letter-spacing: 2px;
     margin-bottom: 25px;
-    animation: fadeInDown 1s ease;
 }
 
 h1 {
@@ -173,14 +174,6 @@ h1 {
   margin-bottom: 30px;
   font-family: 'Syncopate', sans-serif;
   color: var(--gold);
-  animation: textGlow 3s ease-in-out infinite;
-}
-
-@keyframes textGlow {
-  0% { text-shadow: 0 0 5px #f3d46f; }
-  50% { text-shadow: 0 0 15px #d0bc4a; }
-  100% { text-shadow: 0 0 5px #816c26; }
-
 }
 
 h1 span {
@@ -197,7 +190,6 @@ h1 span {
     margin-bottom: 40px;
 }
 
-/* Right Side: Visual & Image */
 .visual-area {
     flex: 1;
     position: relative;
@@ -209,29 +201,23 @@ h1 span {
     position: relative;
     width: 400px;
     height: 550px;
-    background: url('images/team.jpg') center/cover;
     border-radius: 20px;
-    filter: grayscale(40%);
-    transition: 0.6s;
-    z-index: 2;
 }
 
-.image-frame::after {
-    content: '';
-    position: absolute;
-    top: 20px; left: 20px; width: 100%; height: 100%;
-    border: 2px solid var(--gold);
+.glow-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     border-radius: 20px;
-    z-index: -1;
-    transition: 0.4s;
+    animation: goldShine 6s linear infinite;
 }
 
-.image-frame:hover {
-    filter: grayscale(0%);
-    transform: translate(-10px, -10px);
+@keyframes goldShine {
+    0% { filter: drop-shadow(0 0 5px #d4af37); }
+    50% { filter: drop-shadow(0 0 25px #ffd700); }
+    100% { filter: drop-shadow(0 0 5px #d4af37); }
 }
 
-/* Info Cards */
 .floating-info {
     position: absolute;
     bottom: -30px;
@@ -242,21 +228,8 @@ h1 span {
     border-radius: 15px;
     border: 1px solid rgba(255,255,255,0.1);
     width: 280px;
-    z-index: 3;
 }
 
-.floating-info h3 {
-    font-size: 0.9rem;
-    color: var(--gold);
-    margin-bottom: 5px;
-}
-
-.floating-info p {
-    font-size: 0.8rem;
-    opacity: 0.7;
-}
-
-/* CTA Button */
 .cta-btn {
     display: inline-flex;
     align-items: center;
@@ -267,73 +240,10 @@ h1 span {
     text-decoration: none;
     font-weight: 800;
     border-radius: 5px;
-    font-size: 0.9rem;
-    transition: 0.4s;
-}
-
-.cta-btn:hover {
-    background: var(--accent);
-    transform: scale(1.05);
-}
-
-/* Animations */
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 992px) {
-    .main-wrapper { flex-direction: column; padding-top: 150px; text-align: center; }
-    .image-frame { width: 300px; height: 400px; }
-    .description { margin: 0 auto 40px; }
-}
-.animated-logo {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 20px;
-    animation: pulseLogo 4s ease-in-out infinite;
-    transition: transform 0.4s ease;
-}
-
-.image-frame:hover .animated-logo {
-    transform: scale(1.05) rotate(-1deg);
-}
-
-@keyframes pulseLogo {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.03); opacity: 0.95; }
-    100% { transform: scale(1); opacity: 1; }
-}
-.glow-logo {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 20px;
-    position: relative;
-    animation: goldShine 6s linear infinite;
-}
-
-/* Efek kilat emas */
-@keyframes goldShine {
-    0% {
-        filter: drop-shadow(0 0 5px #d4af37) brightness(1);
-    }
-    25% {
-        filter: drop-shadow(0 0 15px #ffd700) brightness(1.2);
-    }
-    50% {
-        filter: drop-shadow(0 0 25px #ffcc00) brightness(1.4);
-    }
-    75% {
-        filter: drop-shadow(0 0 15px #ffd700) brightness(1.2);
-    }
-    100% {
-        filter: drop-shadow(0 0 5px #d4af37) brightness(1);
-    }
 }
 </style>
 </head>
+
 <body>
 
 <div class="bg-visual"></div>
@@ -352,7 +262,7 @@ h1 span {
         <div class="badge">TVET MARA LUMUT</div>
         <h1>MIOR<span>ISKANDAR</span></h1>
         <p class="description">
-           We are Computer Technology students in the Big Data program (course code DFD) completing an assignment for the Mobile Apps subject. Our group has two members, each responsible for preparing their own jobsheet while collaborating together to build the website.
+           We are Computer Technology students in the Big Data program (course code DFD) completing an assignment for the Mobile Apps subject.
         </p>
         
         <a href="aboutus.html" class="cta-btn">
@@ -362,47 +272,18 @@ h1 span {
     </div>
 
     <div class="visual-area">
-  <div class="image-frame">
-  <img src="Logo bulat 3D dengan.jpeg" alt="MI&ISK Logo" class="glow-logo">
-</div>
-    <div class="floating-info">
-        <h3>Computer Technology</h3>
-        <p>System development & network fundamentals optimized for the future digital landscape.</p>
+        <div class="image-frame">
+            <img src="images/logo.png" alt="MI&ISK Logo" class="glow-logo">
+        </div>
+
+        <div class="floating-info">
+            <h3>Computer Technology</h3>
+            <p>System development & network fundamentals optimized for the future digital landscape.</p>
+        </div>
     </div>
-</div>
 </section>
 
-<!-- Persistent Audio -->
-<iframe src="player.html" style="display:none;" id="musicFrame"></iframe>
-</audio>
-
 <script>
-   const audio = document.getElementById("autoLagu");
-const status = document.getElementById("audio-status");
-
-// Play audio on first click anywhere on the page
-document.addEventListener('click', function() {
-    audio.volume = 0; // mula dengan senyap
-    audio.play().then(() => {
-        status.innerHTML = "Audio Playing • Loop Active";
-        setTimeout(() => { status.style.opacity = "0"; }, 3000);
-
-        // Fade-in effect
-        let vol = 0;
-        const fadeIn = setInterval(() => {
-            if (vol < 1) {
-                vol += 0.02; // naikkan volume perlahan
-                audio.volume = vol;
-            } else {
-                clearInterval(fadeIn);
-            }
-        }, 200); // setiap 0.2s naik volume
-    }).catch(error => {
-        console.log("Audio playback failed:", error);
-    });
-}, { once: true });
-
-// Smooth page reveal
 window.onload = () => {
     const wrapper = document.getElementById('main-content');
     setTimeout(() => {
@@ -413,5 +294,4 @@ window.onload = () => {
 </script>
 
 </body>
-
 </html>
