@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kedai Komputer Sayuq</title>
+    <link rel="stylesheet" href="test.css">
+    <script src="https://kit.fontawesome.com/0a306cb1c6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Tajuk utama laman -->
+    <header>
+        <h1>Kedai Komputer Sayuq</h1>
+    </header>
+
+    <div class="utama">
+        <!-- Senarai barang -->
+        <div class="pertama">
+            <table>
+                <tr>
+                    <th>Barang</th>
+                    <th>Harga</th>
+                    <th>Tindakan</th>
+                </tr>
+                <!-- Barang pertama -->
+                <tr>
+                    <td>Keyboard</td>
+                    <td>RM125</td>
+                    <td>
+                        <button class="beli" onclick="tambahData({nama:'Keyboard', harga:125})">
+                            <i class="fa-solid fa-cart-arrow-down"></i> Beli
+                        </button>
+                    </td>
+                </tr>
+                <!-- Barang kedua -->
+                <tr>
+                    <td>Mouse</td>
+                    <td>RM50</td>
+                    <td>
+                        <button class="beli" onclick="tambahData({nama:'Mouse', harga:50})">
+                            <i class="fa-solid fa-cart-arrow-down"></i> Beli
+                        </button>
+                    </td>
+                </tr>
+                <!-- Barang ketiga -->
+                <tr>
+                    <td>Keyboard Casing</td>
+                    <td>RM330</td>
+                    <td>
+                        <button class="beli" onclick="tambahData({nama:'Keyboard Casing', harga:330})">
+                            <i class="fa-solid fa-cart-arrow-down"></i> Beli
+                        </button>
+                    </td>
+                </tr>
+                <!-- Barang keempat -->
+                <tr>
+                    <td>Headphone</td>
+                    <td>RM70</td>
+                    <td>
+                        <button class="beli" onclick="tambahData({nama:'Headphone', harga:70})">
+                            <i class="fa-solid fa-cart-arrow-down"></i> Beli
+                        </button>
+                    </td>
+                </tr>
+                <!-- Barang kelima -->
+                <tr>
+                    <td>Monitor</td>
+                    <td>RM150</td>
+                    <td>
+                        <button class="beli" onclick="tambahData({nama:'Monitor', harga:150})">
+                            <i class="fa-solid fa-cart-shopping"></i> Beli
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Troli -->
+        <div class="kedua">
+            <div class="kandungan-kedua" id="troli">
+                <!-- Troli kosong, JS akan isi -->
+            </div>
+
+            <div class="jumlah">
+                <p>Jumlah</p>
+                <div id="jumlah">
+                    <p class="hold">RM0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./test.js"></script>
+</body>
+</html>
