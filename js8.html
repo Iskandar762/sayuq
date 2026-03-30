@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Art Work Details</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #d0d0d0;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .form-wrapper {
+      background-color: #f0f0f0;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      width: 460px;
+      overflow: hidden;
+    }
+
+    .form-wrapper h2 {
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    form {
+      padding: 14px 18px;
+    }
+
+    .field {
+      margin-bottom: 8px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 12px;
+      color: #333;
+    }
+
+    .field input[type="text"],
+    .field select {
+      width: 100%;
+      padding: 4px 6px;
+      border: 1px solid #aaa;
+      border-radius: 3px;
+      font-size: 13px;
+      background: #fff;
+      height: 26px;
+    }
+
+    /* INPUT WRAP */
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-wrap input[type="text"] {
+      flex: 1;
+      padding-right: 28px;
+    }
+
+    .input-wrap.short {
+      width: 80px;
+    }
+
+    /* ERROR STATE — JS adds .error class to .input-wrap */
+    .input-wrap.error input[type="text"] {
+      border: 2px solid #e44;
+      background-color: #ffe8e8;
+    }
+
+    .error-icon {
+      display: none;
+      position: absolute;
+      right: 6px;
+      background-color: #cc0000;
+      color: #fff;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      font-size: 11px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 16px;
+      pointer-events: none;
+    }
+
+    .input-wrap.error .error-icon {
+      display: inline-block;
+    }
+
+    /* TWO-COLUMN LAYOUT */
+    .two-col {
+      display: flex;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .left-col {
+      flex: 0 0 160px;
+    }
+
+    .right-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* BOXES */
+    .box {
+      border: 1px solid #aaa;
+      border-radius: 3px;
+      background: #fff;
+      padding: 6px 8px;
+    }
+
+    .box-label {
+      font-size: 12px;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .radio-label,
+    .check-label {
+      display: block;
+      font-size: 12px;
+      color: #333;
+      margin-bottom: 2px;
+    }
+
+    .radio-label input,
+    .check-label input {
+      margin-right: 4px;
+    }
+
+    /* BUTTON BAR */
+    .btn-bar {
+      background-color: #bbb;
+      margin: 14px -18px -14px -18px;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-submit,
+    .btn-clear {
+      padding: 5px 18px;
+      border: 1px solid #888;
+      border-radius: 3px;
+      font-size: 13px;
+      cursor: pointer;
+      background-color: #e8a020;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .btn-submit:hover,
+    .btn-clear:hover {
+      background-color: #c07010;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-wrapper">
+    <h2>Edit Art Work Details</h2>
+
+    <form id="artForm" novalidate>
+
+      <!-- Title — hilightable wraps the input-wrap div -->
+      <div class="field">
+        <label for="title">Title</label>
+        <div class="input-wrap hilightable" id="titleWrap">
+          <input type="text" id="title" name="title" />
+          <span class="error-icon">!</span>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="field">
+        <label for="description">Description</label>
+        <div class="input-wrap hilightable" id="descWrap">
+          <input type="text" id="description" name="description" />
+          <span class="error-icon">!</span>
+        </div>
+      </div>
+
+      <!-- Two-column layout -->
+      <div class="two-col">
+
+        <!-- LEFT -->
+        <div class="left-col">
+
+          <div class="field">
+            <label for="genre">Genre</label>
+            <select id="genre" name="genre">
+              <option value="">Choose genre</option>
+              <option value="abstract">Abstract</option>
+              <option value="realism">Realism</option>
+              <option value="impressionism">Impressionism</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option value="">Choose subject</option>
+              <option value="portrait">Portrait</option>
+              <option value="landscape">Landscape</option>
+              <option value="still-life">Still Life</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="medium">Medium</label>
+            <input type="text" id="medium" name="medium" />
+          </div>
+
+          <!-- Year -->
+          <div class="field">
+            <label for="year">Year</label>
+            <div class="input-wrap short hilightable" id="yearWrap">
+              <input type="text" id="year" name="year" />
+              <span class="error-icon">!</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="museum">Museum</label>
+            <input type="text" id="museum" name="museum" />
+          </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="right-col">
+
+          <div class="box">
+            <p class="box-label">Type</p>
+            <label class="radio-label">
+              <input type="radio" name="type" value="painting" checked /> Painting
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="type" value="sculpture" /> Sculpture
+            </label>
+          </div>
+
+          <div class="box">
+            <p class="box-label">Image Creative Commons Specification</p>
+            <label class="check-label">
+              <input type="checkbox" name="cc" value="attribution" /> Attribution
+            </label>
+            <label class="check-label">
+              <input type="checkbox" name="cc" value="noncommercial" /> Noncommercial
+            </label>
+            <label class="check-label">
+              <input type="checkbox" name="cc" value="noderivative" /> No Derivative Works
+            </label>
+            <label class="check-label">
+              <input type="checkbox" name="cc" value="sharealike" /> Share Alike
+            </label>
+          </div>
+
+        </div>
+
+      </div><!-- /two-col -->
+
+      <!-- Buttons -->
+      <div class="btn-bar">
+        <button type="submit" class="btn-submit">Submit</button>
+        <button type="button" class="btn-clear" id="clearBtn">Clear Form</button>
+      </div>
+
+    </form>
+  </div>
+
+  <script src="js8.html"></script>
+</body>
+</html>

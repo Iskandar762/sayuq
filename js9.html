@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/0a306cb1c6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="js9.css">
+    <title>Add to Cart - Kedai Kacang</title>
+    <h1>MIOR KEDAI KERETA</h1>
+</head>
+<body>
+    <div class="utama">
+        <div class="pertama">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Barang</th>
+                        <th>Harga</th>
+                        <th>Tindakan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GR Corolla</td>
+                        <td>RM 300,000</td>
+                        <td>
+                            <button class="beli" onclick="tambahData({nama: 'GR Corolla', harga: 300000})">
+                                <i class="fa-solid fa-cart-arrow-down"></i> beli
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>BMW M135i</td>
+                        <td>RM 360,000</td>
+                        <td>
+                            <button class="beli" onclick="tambahData({nama: 'BMW M135i', harga: 360000})">
+                                <i class="fa-solid fa-cart-arrow-down"></i> beli
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>GR Yaris</td>
+                        <td>RM 128,000</td>
+                        <td>
+                            <button class="beli" onclick="tambahData({nama: 'GR Yaris', harga: 128000})">
+                                <i class="fa-solid fa-cart-arrow-down"></i> beli
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Honda Civic Type Rh</td>
+                        <td>RM 399,000</td>
+                        <td>
+                            <button class="beli" onclick="tambahData({nama: 'Honda Civic Type R', harga: 399000})">
+                                <i class="fa-solid fa-cart-arrow-down"></i> beli
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Volkswagen Golf R</td>
+                        <td>RM 330,000</td>
+                        <td>
+                            <button class="beli" onclick="tambahData({nama: 'Volkswagen Golf R', harga: 330000})">
+                                <i class="fa-solid fa-cart-arrow-down"></i> beli
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="kedua">
+            <div id="senarai-troli">
+                <p style="padding: 20px; color: gray;">Troli kosong...</p>
+            </div>
+            
+            <div class="jumlah">
+                <p>Jumlah Keseluruhan</p>
+                <div>
+                    <p class="bold" id="total-harga">RM 0.00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js9.js"></script>
+</body>
+</html>

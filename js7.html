@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <title>Share Your Travels - Lab 7</title>
+    <script src="lab-08/lab8.js"></script>
+    <link rel="stylesheet" href="js7.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <h1>Share Your Travels</h1>
+            <span class="menu-icon">☰</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <figure id="featured">
+            <img src="https://wanderingwheatleys.com/wp-content/uploads/2022/10/best-things-to-do-in-lucerne-switzerland-header.jpg" alt="Zermatt" title="Zermatt">
+            <figcaption>Penang Bridge</figcaption>
+        </figure>
+
+        <div id="thumbnails">
+            <img src="https://wanderingwheatleys.com/wp-content/uploads/2022/10/best-things-to-do-in-lucerne-switzerland-header.jpg" alt="Castle" title="Zermatt">
+            <img src="https://tzassets.bestwestern.com/wp-content/uploads/2022/10/24211350/GettyImages-1155086988-1536x1025.jpg" alt="City" title="Second Interlaken">
+            <img src="https://www.pocketwanderings.com/wp-content/uploads/2023/06/Untertorbrucke-Bridge-1.jpg" alt="Sea" title="Lucerne">
+            <img src="https://tse3.mm.bing.net/th/id/OIP.Yhu12hZa4FKIQmSzJX1KxAHaE8?w=1200&h=800&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Ruins" title="Jungfraujoch">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.wud9LTO112TD4dbNdsL5DQHaEr?w=1024&h=646&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Church" title="Lake Geneva">
+        </div>
+    </main>
+
+    <script>
+        window.addEventListener("load", function() {  
+
+    var thumbs = document.getElementById("thumbnails"); 
+
+    thumbs.addEventListener("click", function (e) { 
+
+        if (e.target.nodeName.toLowerCase() == 'img') { 
+
+            var clickedImageSource = e.target.src;    
+
+            var newSrc = clickedImageSource.replace("small", "medium");             
+
+            var featuredImage = document.querySelector("#featured img"); 
+
+            featuredImage.src = newSrc;  
+
+            featuredImage.title = e.target.title; 
+        }
+    }); 
+
+    var featured = document.getElementById("featured"); 
+
+    featured.addEventListener("mouseover", function (e) { 
+
+        var caption = document.querySelector("#featured figcaption"); 
+
+        caption.style.transition = "opacity 1.5s"; 
+        caption.style.opacity = 0.80;         
+
+        caption.innerHTML = document.querySelector("#featured img").title; 
+    }); 
+
+    featured.addEventListener("mouseout", function (e) {    
+
+        var caption = document.querySelector("#featured figcaption"); 
+
+        caption.style.transition = "opacity 1.5s"; 
+        caption.style.opacity = 0; 
+    });
+
+});
+</script>
+</body>
+</html>
