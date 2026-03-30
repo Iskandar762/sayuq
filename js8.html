@@ -65,7 +65,6 @@
       height: 26px;
     }
 
-    /* INPUT WRAP */
     .input-wrap {
       position: relative;
       display: flex;
@@ -81,7 +80,6 @@
       width: 80px;
     }
 
-    /* ERROR STATE — JS adds .error class to .input-wrap */
     .input-wrap.error input[type="text"] {
       border: 2px solid #e44;
       background-color: #ffe8e8;
@@ -107,7 +105,6 @@
       display: inline-block;
     }
 
-    /* TWO-COLUMN LAYOUT */
     .two-col {
       display: flex;
       gap: 12px;
@@ -125,7 +122,6 @@
       gap: 8px;
     }
 
-    /* BOXES */
     .box {
       border: 1px solid #aaa;
       border-radius: 3px;
@@ -152,7 +148,6 @@
       margin-right: 4px;
     }
 
-    /* BUTTON BAR */
     .btn-bar {
       background-color: #bbb;
       margin: 14px -18px -14px -18px;
@@ -187,7 +182,6 @@
 
     <form id="artForm" novalidate>
 
-      <!-- Title — hilightable wraps the input-wrap div -->
       <div class="field">
         <label for="title">Title</label>
         <div class="input-wrap hilightable" id="titleWrap">
@@ -196,7 +190,6 @@
         </div>
       </div>
 
-      <!-- Description -->
       <div class="field">
         <label for="description">Description</label>
         <div class="input-wrap hilightable" id="descWrap">
@@ -205,12 +198,8 @@
         </div>
       </div>
 
-      <!-- Two-column layout -->
       <div class="two-col">
-
-        <!-- LEFT -->
         <div class="left-col">
-
           <div class="field">
             <label for="genre">Genre</label>
             <select id="genre" name="genre">
@@ -236,7 +225,6 @@
             <input type="text" id="medium" name="medium" />
           </div>
 
-          <!-- Year -->
           <div class="field">
             <label for="year">Year</label>
             <div class="input-wrap short hilightable" id="yearWrap">
@@ -249,12 +237,9 @@
             <label for="museum">Museum</label>
             <input type="text" id="museum" name="museum" />
           </div>
-
         </div>
 
-        <!-- RIGHT -->
         <div class="right-col">
-
           <div class="box">
             <p class="box-label">Type</p>
             <label class="radio-label">
@@ -280,12 +265,9 @@
               <input type="checkbox" name="cc" value="sharealike" /> Share Alike
             </label>
           </div>
-
         </div>
+      </div>
 
-      </div><!-- /two-col -->
-
-      <!-- Buttons -->
       <div class="btn-bar">
         <button type="submit" class="btn-submit">Submit</button>
         <button type="button" class="btn-clear" id="clearBtn">Clear Form</button>
@@ -294,6 +276,86 @@
     </form>
   </div>
 
-  <script src="js8.html"></script>
+  <script>
+    // Check if input is blank
+    function isBlank(inputField) {
+      return inputField.value.trim() === "";
+    }
+
+    // Remove error style from wrapper
+    function makeClean(element) {
+      element.classList.remove("error");
+    }
+
+    window.addEventListener("load", function () {
+
+      // Remove error highlight when typing
+      var hilightableInputs = document.querySelectorAll(".hilightable input");
+      hilightableInputs.forEach(function(input) {
+        input.addEventListener("input", function(e) {
+          makeClean(e.currentTarget.parentElement); // remove .error from wrapper
+        });
+      });
+
+      // CLEAR BUTTON
+      var clearBtn = document.getElementById("clearBtn");
+      clearBtn.addEventListener("click", function () {
+        document.getElementById("artForm").reset();
+        var hilightableDivs = document.querySelectorAll(".hilightable");
+        hilightableDivs.forEach(function(div){
+          makeClean(div);
+        });
+      });
+
+      // FORM SUBMIT
+      var form = document.getElementById("artForm");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); // stop reload
+        var isValid = true;
+
+        // Validate Title
+        var titleInput = document.getElementById("title");
+        var titleWrap  = document.getElementById("titleWrap");
+        if (isBlank(titleInput)) {
+          titleWrap.classList.add("error");
+          isValid = false;
+        } else {
+          makeClean(titleWrap);
+        }
+
+        // Validate Description
+        var descInput = document.getElementById("description");
+        var descWrap  = document.getElementById("descWrap");
+        if (isBlank(descInput)) {
+          descWrap.classList.add("error");
+          isValid = false;
+        } else {
+          makeClean(descWrap);
+        }
+
+        // Validate Year
+        var yearInput = document.getElementById("year");
+        var yearWrap  = document.getElementById("yearWrap");
+        if (isBlank(yearInput) || !/^\d{4}$/.test(yearInput.value.trim())) {
+          yearWrap.classList.add("error");
+          isValid = false;
+        } else {
+          makeClean(yearWrap);
+        }
+
+        // If all valid, submit
+        if (isValid) {
+          alert("Form submitted successfully!");
+          form.reset();
+          var hilightableDivs = document.querySelectorAll(".hilightable");
+          hilightableDivs.forEach(function(div){
+            makeClean(div);
+          });
+        }
+      });
+
+    });
+  </script>
+
 </body>
 </html>
