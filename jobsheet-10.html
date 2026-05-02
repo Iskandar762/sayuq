@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial jQuery - iskandar corner</title>
+    <script src="jquery-4.0.0.js"></script>
+    <style>
+        body {
+            font-size: 17px;
+            font-family: Arial;
+        }
+        .header {
+            text-align: center;
+            padding: 28px;
+            background: rgb(63, 237, 95);
+            color: rgb(68, 68, 68);
+        }
+        .container {
+            padding: 50px;
+        } 
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>TUTORIAL JQUERY MIOR</h1>
+    </div>
+
+    <div class="container">
+        <h2 class="p1">Situasi Pagi</h2>
+        <p class="p3">Pada waktu pagi, saya bangun awal untuk memulakan hari dengan penuh semangat. 
+            Selepas mandi dan bersiap, saya menikmati sarapan bersama keluarga. 
+            <b>Udara pagi yang segar membuatkan saya berasa tenang dan bertenaga.</b> 
+            Kemudian, saya melakukan aktiviti seperti belajar atau membantu ibu bapa di rumah. 
+            Suasana pagi yang nyaman menjadikan hari saya lebih ceria.</p>
+        <br><br>
+        <h2 id="p2">Situasi Tengah Hari</h2>
+        <p class="p4">Pada waktu tengah hari, saya berehat selepas menyelesaikan aktiviti pada waktu pagi. 
+            Saya menikmati makan tengah hari bersama keluarga atau rakan-rakan. 
+            <b>Selepas itu, saya berehat seketika untuk menghilangkan rasa letih.</b> 
+            Kemudian, saya menyambung semula kerja atau pelajaran yang belum selesai. 
+            Walaupun cuaca panas, saya tetap menjalankan aktiviti dengan baik.
+        </p>
+        <br><br>
+    </div>
+
+    <ul class="reg">
+        <li>Laptop</li>
+        <li>Smartphone</li>
+        <li>Tablet</li>
+        <li>Keyboard</li>
+        <li>Mouse</li>
+        <li>Printer</li>
+    </ul>
+
+    <input type="button" value="Button" name="button"/>
+    <input type="text" value=""/>
+    <input type="submit" value="Submit"/>
+    <input type="reset" value="Reset" name="reset"/>
+    <br><br>
+
+<script type="text/javascript">
+// $('h2.p1').hide();
+// $('h2#p2').hide();
+$('.p3 b').css('color', 'orange'); 
+$('.p4 b').css('color', 'red');
+
+$('.reg li:first').css('color','red');
+$('.reg li:last').css('color','blue');
+$('.reg li:even').css('background','gray');
+$('.reg li:odd').css('background','purple');
+$('.reg li:odd').css('list-style','square');
+
+
+$('.reg li:nth-child(2)').css('color','violet');
+$('.reg li:nth-child(3)').css('color','pink');
+$('.reg li:nth-child(4)').css('color','black');
+$('.reg li:nth-child(5)').css('color','maroon');
+
+// $(':submit').hide();
+// $('[name="button"]').hide();
+// $('[value="Reset"]').hide();
+
+// $('*').hide();
+</script> 
+</body>
+</html>
