@@ -1,416 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mior & Iskandar | Digital Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-<style>
-:root {
-    --accent: #00ffcc; /* Emerald Neon */
-    --gold: #d4af37;
-    --dark-bg: #080c10;
-    --card-bg: rgba(255, 255, 255, 0.03);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: var(--dark-bg);
-    color: #ffffff;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    overflow-x: hidden;
-}
-.bg-visual {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(120deg, #080c10, #0a1a1f, #080c10);
-  background-size: 200% 200%;
-  animation: moveGradient 15s ease infinite;
-  z-index: -1;
-}
-
-@keyframes moveGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-/* Background Animation */
-.bg-visual::before {
-  content: "";
-  position: absolute;
-  width: 100%; height: 100%;
-  background: radial-gradient(circle, rgba(0,255,204,0.1) 2px, transparent 3px);
-  background-size: 80px 80px;
-  animation: twinkle 6s linear infinite;
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.6; }
-}
-.bg-visual::after {
-  content: "";
-  position: absolute;
-  width: 100%; height: 100%;
-  background-image: repeating-linear-gradient(
-    45deg,
-    rgba(212,175,55,0.05) 0px,
-    rgba(212,175,55,0.05) 2px,
-    transparent 2px,
-    transparent 20px
-  );
-}
-/* Custom Navigation */
-nav {
-    padding: 40px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-}
-
-.brand {
-    font-family: 'Syncopate', sans-serif;
-    font-weight: 700;
-    letter-spacing: 5px;
-    font-size: 1.2rem;
-    color: var(--gold);
-}
-
-.nav-links {
-    display: flex;
-    gap: 40px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 0.8rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  opacity: 0.7;
-  position: relative;
-  transition: 0.4s;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 0%;
-  height: 2px;
-  background: var(--accent);
-  transition: 0.4s;
-}
-
-.nav-links a:hover {
-  opacity: 1;
-  color: var(--accent);
-  text-shadow: 0 0 8px var(--accent);
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* Audio Status Notification */
-#audio-status {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    font-size: 10px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--accent);
-    opacity: 0.5;
-    z-index: 100;
-}
-
-/* Hero Content */
-.main-wrapper {
-    display: flex;
-    min-height: 100vh;
-    align-items: center;
-    padding: 0 8%;
-    gap: 50px;
-    opacity: 0; /* Start hidden for animation */
-}
-
-/* Left Side: Text */
-.content-area {
-    flex: 1;
-    z-index: 2;
-}
-
-.badge {
-    display: inline-block;
-    padding: 6px 15px;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    border-radius: 100px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-    animation: fadeInDown 1s ease;
-}
-
-h1 {
-  font-size: clamp(3rem, 8vw, 5rem);
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 30px;
-  font-family: 'Syncopate', sans-serif;
-  color: var(--gold);
-  animation: textGlow 3s ease-in-out infinite;
-}
-
-@keyframes textGlow {
-  0% { text-shadow: 0 0 5px #f3d46f; }
-  50% { text-shadow: 0 0 15px #d0bc4a; }
-  100% { text-shadow: 0 0 5px #816c26; }
-
-}
-
-h1 span {
-    display: block;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
-}
-
-.description {
-    max-width: 500px;
-    font-size: 1.1rem;
-    color: #94a3b8;
-    line-height: 1.8;
-    margin-bottom: 40px;
-}
-
-/* Right Side: Visual & Image */
-.visual-area {
-    flex: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-}
-
-.image-frame {
-    position: relative;
-    width: 400px;
-    height: 550px;
-    background: url('images/team.jpg') center/cover;
-    border-radius: 20px;
-    filter: grayscale(40%);
-    transition: 0.6s;
-    z-index: 2;
-}
-
-.image-frame::after {
-    content: '';
-    position: absolute;
-    top: 20px; left: 20px; width: 100%; height: 100%;
-    border: 2px solid var(--gold);
-    border-radius: 20px;
-    z-index: -1;
-    transition: 0.4s;
-}
-
-.image-frame:hover {
-    filter: grayscale(0%);
-    transform: translate(-10px, -10px);
-}
-
-/* Info Cards */
-.floating-info {
-    position: absolute;
-    bottom: -30px;
-    right: -20px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    padding: 25px;
-    border-radius: 15px;
-    border: 1px solid rgba(255,255,255,0.1);
-    width: 280px;
-    z-index: 3;
-}
-
-.floating-info h3 {
-    font-size: 0.9rem;
-    color: var(--gold);
-    margin-bottom: 5px;
-}
-
-.floating-info p {
-    font-size: 0.8rem;
-    opacity: 0.7;
-}
-
-/* CTA Button */
-.cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 15px;
-    padding: 20px 40px;
-    background: var(--gold);
-    color: #000;
-    text-decoration: none;
-    font-weight: 800;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    transition: 0.4s;
-}
-
-.cta-btn:hover {
-    background: var(--accent);
-    transform: scale(1.05);
-}
-
-/* Animations */
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 992px) {
-    .main-wrapper { flex-direction: column; padding-top: 150px; text-align: center; }
-    .image-frame { width: 300px; height: 400px; }
-    .description { margin: 0 auto 40px; }
-}
-.animated-logo {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 20px;
-    animation: pulseLogo 4s ease-in-out infinite;
-    transition: transform 0.4s ease;
-}
-
-.image-frame:hover .animated-logo {
-    transform: scale(1.05) rotate(-1deg);
-}
-
-@keyframes pulseLogo {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.03); opacity: 0.95; }
-    100% { transform: scale(1); opacity: 1; }
-}
-.glow-logo {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 20px;
-    position: relative;
-    animation: goldShine 6s linear infinite;
-}
-
-/* Efek kilat emas */
-@keyframes goldShine {
-    0% {
-        filter: drop-shadow(0 0 5px #d4af37) brightness(1);
-    }
-    25% {
-        filter: drop-shadow(0 0 15px #ffd700) brightness(1.2);
-    }
-    50% {
-        filter: drop-shadow(0 0 25px #ffcc00) brightness(1.4);
-    }
-    75% {
-        filter: drop-shadow(0 0 15px #ffd700) brightness(1.2);
-    }
-    100% {
-        filter: drop-shadow(0 0 5px #d4af37) brightness(1);
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial jQuery - iskandar corner</title>
+    <script src="jquery-4.0.0.js"></script>
+    <style>
+        body {
+            font-size: 17px;
+            font-family: Arial;
+        }
+        .header {
+            text-align: center;
+            padding: 28px;
+            background: rgb(63, 153, 237);
+            color: rgb(68, 68, 68);
+        }
+        .container {
+            padding: 50px;
+        } 
+    </style>
 </head>
 <body>
-
-<div class="bg-visual"></div>
-<div id="audio-status">Click anywhere to play audio vibe</div>
-
-<nav>
-    <div class="brand">MI&ISK</div>
-    <div class="nav-links">
-        <a href="#">Archives</a>
-        <a href="aboutus.html">Explore</a>
+    <div class="header">
+        <h1>TUTORIAL JQUERY ISKANDAR</h1>
     </div>
-</nav>
 
-<section class="main-wrapper" id="main-content">
-    <div class="content-area">
-        <div class="badge">TVET MARA LUMUT</div>
-        <h1>MIOR<span>ISKANDAR</span></h1>
-        <p class="description">
-           We are Computer Technology students in the Big Data program (course code DFD) completing an assignment for the Mobile Apps subject. Our group has two members, each responsible for preparing their own jobsheet while collaborating together to build the website.
+    <div class="container">
+        <h2 class="p1">Situasi Pagi</h2>
+        <p class="p3">Pada waktu pagi, saya bangun awal dari tidur dengan rasa segar dan terus mandi serta gosok gigi supaya badan bersih. 
+            Selepas itu, saya makan sarapan bersama keluarga sebelum bersiap memakai pakaian sekolah atau kerja. 
+            Kemudian, saya keluar <b>rumah untuk memulakan aktiviti harian.</b> 
+            Apabila tiba waktu tengah hari, saya berehat seketika selepas melakukan aktiviti pagi dan makan tengah hari bersama keluarga atau kawan-kawan. 
+            Selepas itu, saya meluangkan masa untuk berehat atau tidur sekejap sebelum menyambung semula kerja atau pelajaran yang belum selesai.</p>
+        <br><br>
+        <h2 id="p2">Situasi Tengah Hari</h2>
+        <p class="p4">Pada waktu tengah hari, saya mengambil masa untuk berehat selepas melakukan aktiviti pada waktu pagi.
+           Saya menikmati makan tengah hari bersama keluarga atau rakan-rakan.
+           <b>Selepas itu, saya berehat seketika atau tidur sekejap untuk menghilangkan penat.</b>
+           Kemudian, saya menyambung semula kerja atau pelajaran yang masih belum siap.
+           Cuaca pada waktu ini selalunya panas, jadi saya lebih suka berada di dalam rumah.
         </p>
-        
-        <a href="aboutus.html" class="cta-btn">
-            VIEW OUR JOBSHEET
-            <span>→</span>
-        </a>
+        <br><br>
     </div>
 
-    <div class="visual-area">
-  <div class="image-frame">
-  <img src="logo.png" alt="MI&ISK Logo" class="glow-logo">
-</div>
-    <div class="floating-info">
-        <h3>Computer Technology</h3>
-        <p>System development & network fundamentals optimized for the future digital landscape.</p>
-    </div>
-</div>
-</section>
+    <ul class="reg">
+        <li>Apple</li>
+        <li>Orange</li>
+        <li>Banana</li>
+        <li>Grape</li>
+        <li>Strawberry</li>
+        <li>Watermelon</li>
+    </ul>
 
-<!-- Persistent Audio -->
-<iframe src="player.html" style="display:none;" id="musicFrame"></iframe>
-</audio>
+    <input type="button" value="Button" name="button"/>
+    <input type="text" value=""/>
+    <input type="submit" value="Submit"/>
+    <input type="reset" value="Reset" name="reset"/>
+    <br><br>
 
-<script>
-   const audio = document.getElementById("autoLagu");
-const status = document.getElementById("audio-status");
+<script type="text/javascript">
+// $('h2.p1').hide();
+// $('h2#p2').hide();
+$('.p3 b').css('color', 'orange'); 
+$('.p4 b').css('color', 'red');
 
-// Play audio on first click anywhere on the page
-document.addEventListener('click', function() {
-    audio.volume = 0; // mula dengan senyap
-    audio.play().then(() => {
-        status.innerHTML = "Audio Playing • Loop Active";
-        setTimeout(() => { status.style.opacity = "0"; }, 3000);
+$('.reg li:first').css('color','red');
+$('.reg li:last').css('color','blue');
+$('.reg li:even').css('background','green');
+$('.reg li:odd').css('background','cyan');
+$('.reg li:odd').css('list-style','square');
 
-        // Fade-in effect
-        let vol = 0;
-        const fadeIn = setInterval(() => {
-            if (vol < 1) {
-                vol += 0.02; // naikkan volume perlahan
-                audio.volume = vol;
-            } else {
-                clearInterval(fadeIn);
-            }
-        }, 200); // setiap 0.2s naik volume
-    }).catch(error => {
-        console.log("Audio playback failed:", error);
-    });
-}, { once: true });
 
-// Smooth page reveal
-window.onload = () => {
-    const wrapper = document.getElementById('main-content');
-    setTimeout(() => {
-        wrapper.style.transition = "opacity 2.5s ease";
-        wrapper.style.opacity = "1";
-    }, 300);
-}
-</script>
+$('.reg li:nth-child(2)').css('color','violet');
+$('.reg li:nth-child(3)').css('color','pink');
+$('.reg li:nth-child(4)').css('color','black');
+$('.reg li:nth-child(5)').css('color','maroon');
 
+// $(':submit').hide();
+// $('[name="button"]').hide();
+// $('[value="Reset"]').hide();
+
+// $('*').hide();
+</script> 
 </body>
 </html>
-
