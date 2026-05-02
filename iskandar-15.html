@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Web Session Storage - Iskandar</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+    }
+
+    /* HEADER (same style like your example) */
+    .header {
+        background: #42a5f5;
+        color: #333;
+        text-align: center;
+        padding: 40px 20px;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .container {
+        width: 80%;
+        margin: 40px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 6px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        line-height: 1.8;
+        color: #333;
+    }
+
+    .highlight-red {
+        color: red;
+        font-weight: bold;
+    }
+
+    input {
+        width: 60%;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        padding: 10px 15px;
+        margin: 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .save { background: #4caf50; color: white; }
+    .show { background: #2196f3; color: white; }
+    .delete { background: #f44336; color: white; }
+
+    #output {
+        margin-top: 15px;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    WEB SESSION STORAGE - ISKANDAR
+</div>
+
+<!-- SECTION 1 -->
+<div class="container">
+    <h2>What is Session Storage?</h2>
+    <p>
+        Session storage is a type of web storage that stores data temporarily.
+        The data will be deleted automatically when the browser tab is closed.
+        <span class="highlight-red">It is useful for temporary data like forms or sessions.</span>
+    </p>
+</div>
+
+<!-- SECTION 2 -->
+<div class="container">
+    <h2>Session Storage</h2>
+
+    <input type="text" id="dataInput" placeholder="Enter temporary data">
+
+    <br>
+
+    <button class="save" onclick="saveData()">Save</button>
+    <button class="show" onclick="showData()">Show</button>
+    <button class="delete" onclick="deleteData()">Delete</button>
+
+    <p id="output"></p>
+</div>
+
+<script>
+function saveData() {
+    let data = document.getElementById("dataInput").value;
+    sessionStorage.setItem("tempData", data);
+    document.getElementById("output").innerHTML = "✔ Data Saved!";
+}
+
+function showData() {
+    let data = sessionStorage.getItem("tempData");
+    document.getElementById("output").innerHTML = "📦 Saved Data: " + data;
+}
+
+function deleteData() {
+    sessionStorage.removeItem("tempData");
+    document.getElementById("output").innerHTML = "❌ Data Deleted!";
+}
+</script>
+
+</body>
+</html>

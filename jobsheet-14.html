@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Web Local Storage - Mior</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+    }
+
+    /* HEADER (like your screenshot) */
+    .header {
+        background: #09e60d;
+        color: #333;
+        text-align: center;
+        padding: 40px 20px;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    /* SECTION BOX */
+    .container {
+        width: 80%;
+        margin: 40px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 6px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        line-height: 1.8;
+        color: #333;
+    }
+
+    /* highlight like your orange/red text */
+    .highlight-pink {
+        color: pink;
+        font-weight: bold;
+    }
+
+    .highlight-red {
+        color: red;
+        font-weight: bold;
+    }
+
+    /* INPUT AREA */
+    input {
+        width: 60%;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        padding: 10px 15px;
+        margin: 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .save { background: #4caf50; color: white; }
+    .show { background: #2196f3; color: white; }
+    .delete { background: #f44336; color: white; }
+
+    #output {
+        margin-top: 15px;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    WEB LOCAL STORAGE - MIOR
+</div>
+
+<!-- SECTION 1 -->
+<div class="container">
+    <h2>What is Local Storage?</h2>
+    <p>
+        Local storage is a web storage that allows the browser to store data permanently.
+        The data will remain even after the browser is closed.
+        <span class="highlight-pink">It is useful for saving user preferences</span> and settings.
+    </p>
+</div>
+
+<!-- SECTION 2 -->
+<div class="container">
+    <h2>Local Storage</h2>
+
+    <input type="text" id="nameInput" placeholder="Enter anything (name, number, etc)">
+
+    <br>
+
+    <button class="save" onclick="saveData()">Save</button>
+    <button class="show" onclick="showData()">Show</button>
+    <button class="delete" onclick="deleteData()">Delete</button>
+
+    <p id="output"></p>
+</div>
+
+<script>
+function saveData() {
+    let value = document.getElementById("nameInput").value;
+    localStorage.setItem("data", value);
+    document.getElementById("output").innerHTML = "✔ Data Saved!";
+}
+
+function showData() {
+    let value = localStorage.getItem("data");
+    document.getElementById("output").innerHTML = "📦 Saved Data: " + value;
+}
+
+function deleteData() {
+    localStorage.removeItem("data");
+    document.getElementById("output").innerHTML = "❌ Data Deleted!";
+}
+</script>
+
+</body>
+</html>
