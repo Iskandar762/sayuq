@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial jQuery - iskandar corner</title>
+    <script src="jquery-4.0.0.js"></script>
+    <style>
+        body {
+            font-size: 17px;
+            font-family: Arial;
+        }
+        .header {
+            text-align: center;
+            padding: 28px;
+            background: rgb(83, 15, 228);
+            color: rgb(68, 68, 68);
+        }
+        .container {
+            padding: 50px;
+        }
+        
+        img {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        
+        .info {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>TUTORIAL JQUERY ISKANDAR</h1>
+    </div>
+
+    <div class="container">
+        <h1>Mouse Event</h1>
+        <button id="btnMuncul">Muncul & Tukar Gambar</button>
+        <button id="btnHilang">Hilang</button>
+
+        <br><br>
+        <img id="gambarMotor" src="https://static0.cbrimages.com/wordpress/wp-content/uploads/2018/10/ultraman1.jpg" width="250"/>
+        
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        
+        // Koleksi 3 gambar berbeza (ganti link dengan gambar pilihan awak)
+        let gambarIndex = 0;
+        let gambarSebelumHover = ""; // untuk simpan gambar asal sebelum hover
+        
+        const gambarArray = [
+            "https://static0.cbrimages.com/wordpress/wp-content/uploads/2018/10/ultraman1.jpg",
+            "https://www.nippon.com/en/ncommon/contents/japan-topics/2419470/2419470.jpg",
+            "https://www.hollywoodreporter.com/wp-content/uploads/2024/04/Ultraman__Rising_u_01_33_04_07_Comp_02_R.jpg?w=1440&h=810&crop=1",
+            "https://res.klook.com/image/upload/w_750,h_469,c_fill,q_85/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/szjaclxhsizh4gd0rozd.jpg"
+        ];
+        
+        // Pastikan semua gambar real (guna gambar vespa alternatif)
+        // Gambar index 0 dah ada, kita tambah 3 gambar vespa lain
+        const gambarVespa = [
+            "https://static0.cbrimages.com/wordpress/wp-content/uploads/2018/10/ultraman1.jpg",
+            "https://www.nippon.com/en/ncommon/contents/japan-topics/2419470/2419470.jpg",
+            "https://www.hollywoodreporter.com/wp-content/uploads/2024/04/Ultraman__Rising_u_01_33_04_07_Comp_02_R.jpg?w=1440&h=810&crop=1",
+            "https://res.klook.com/image/upload/w_750,h_469,c_fill,q_85/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/szjaclxhsizh4gd0rozd.jpg"
+        ];
+        
+        // Guna gambar yang lebih stabil
+        const stableGambar = [
+            "https://static0.cbrimages.com/wordpress/wp-content/uploads/2018/10/ultraman1.jpg",
+            "https://www.nippon.com/en/ncommon/contents/japan-topics/2419470/2419470.jpg",
+            "https://www.hollywoodreporter.com/wp-content/uploads/2024/04/Ultraman__Rising_u_01_33_04_07_Comp_02_R.jpg?w=1440&h=810&crop=1",
+            "https://res.klook.com/image/upload/w_750,h_469,c_fill,q_85/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/szjaclxhsizh4gd0rozd.jpg"
+        ];
+        
+        // Fungsi untuk dapatkan gambar seterusnya (bergilir)
+        function getNextGambar() {
+            gambarIndex = (gambarIndex + 1) % stableGambar.length;
+            return stableGambar[gambarIndex];
+        }
+        
+        // Fungsi untuk dapatkan gambar rawak
+        function getRandomGambar() {
+            const randomIndex = Math.floor(Math.random() * stableGambar.length);
+            return stableGambar[randomIndex];
+        }
+        
+        // Button HILANG
+        $('#btnHilang').on('click', function(){
+            $('#gambarMotor').hide();
+            alert('Gambar dah hilang! Tekan "Muncul & Tukar Gambar" untuk munculkan gambar baru');
+        });
+
+        // Button MUNCUL & TUKAR GAMBAR
+        $('#btnMuncul').on('click', function(){
+            // Tukar kepada gambar baru (bergilir)
+            const gambarBaru = getNextGambar();
+            $('#gambarMotor').attr('src', gambarBaru).show();
+            alert('Gambar muncul dengan imej baru! (Gambar ke-' + (gambarIndex + 1) + ')');
+        });
+
+        // MOUSEOVER (hover) pada gambar - tukar gambar lain
+        $('#gambarMotor').on('mouseenter', function(){
+            // Simpan gambar sebelum tukar
+            gambarSebelumHover = $('#gambarMotor').attr('src');
+            // Tukar kepada gambar rawak
+            const gambarHover = getRandomGambar();
+            $('#gambarMotor').attr('src', gambarHover);
+        });
+        
+        // MOUSEOUT (keluar dari gambar) - kembali ke gambar asal
+        $('#gambarMotor').on('mouseleave', function(){
+            if (gambarSebelumHover) {
+                $('#gambarMotor').attr('src', gambarSebelumHover);
+                gambarSebelumHover = "";
+            }
+        });
+
+        // Klik pada gambar - hilang perlahan dengan efek fadeOut
+        $('#gambarMotor').on('click', function(){
+            $(this).fadeOut(500);
+            alert('Gambar diklik! Hilang perlahan... Tekan "Muncul & Tukar Gambar" untuk munculkan gambar baru');
+        });
+        
+        // Optional: Double klik pada gambar - tukar gambar tanpa hilang
+        $('#gambarMotor').on('dblclick', function(){
+            const gambarBaru = getRandomGambar();
+            $(this).attr('src', gambarBaru);
+            alert('Gambar bertukar! (double click)');
+        });
+        
+    });
+    
+</script> 
+</body>
+</html>

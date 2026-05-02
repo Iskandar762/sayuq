@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial jQuery - mior corner</title>
+    <script src="jquery-4.0.0.js"></script>
+    <style>
+        body {
+            font-size: 17px;
+            font-family: Arial;
+        }
+        .header {
+            text-align: center;
+            padding: 28px;
+            background: rgb(75, 119, 31);
+            color: rgb(68, 68, 68);
+        }
+        .container {
+            padding: 50px;
+        }
+        
+        img {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        
+        .info {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>TUTORIAL JQUERY MIOR</h1>
+    </div>
+
+    <div class="container">
+        <h1>Mouse Event</h1>
+        <button id="btnMuncul">Muncul & Tukar Gambar</button>
+        <button id="btnHilang">Hilang</button>
+
+        <br><br>
+        <img id="gambarMotor" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLwBqpCrWI6hqfACLNDeDWogvXbR5Fj83F4anyFAg5T3X0NpmchB6fnY08cASahd6Bfvc8JVkOIXxZ6cqyfn7OBc6pQzyu1QIj3TrZZw&s=10" width="250"/>
+        
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        
+        // Koleksi 3 gambar berbeza (ganti link dengan gambar pilihan awak)
+        let gambarIndex = 0;
+        let gambarSebelumHover = ""; // untuk simpan gambar asal sebelum hover
+        
+        const gambarArray = [
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLwBqpCrWI6hqfACLNDeDWogvXbR5Fj83F4anyFAg5T3X0NpmchB6fnY08cASahd6Bfvc8JVkOIXxZ6cqyfn7OBc6pQzyu1QIj3TrZZw&s=10",
+            "https://wallpapers.com/images/hd/upin-ipin-1920-x-1080-background-t1fijxrv2muisbsz.jpg",
+            "https://thfvnext.bing.com/th/id/OIP.3HjIV5OuuptFIzh255V2GQHaEK?o=7&cb=thfvnextrm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
+            "https://tse4.mm.bing.net/th/id/OIP.Ie80GMWNUwAjuHVGwIXCcQHaE8?cb=thfvnext&w=736&h=491&rs=1&pid=ImgDetMain&o=7&rm=3"
+        ];
+        
+        // Pastikan semua gambar real (guna gambar vespa alternatif)
+        // Gambar index 0 dah ada, kita tambah 3 gambar vespa lain
+        const gambarVespa = [
+            "https://tse2.mm.bing.net/th/id/OIP.bL3KPIzKPENMluPzQ0ffaAHaLH?cb=thfvnext&rs=1&pid=ImgDetMain&o=7&rm=3",
+            "https://i.scdn.co/image/ab67616d0000b273c97507ed7a19e64f0550fcdf",
+            "https://cdn1.vectorstock.com/i/1000x1000/54/55/vespa-scooter-side-view-vector-20645455.jpg"
+        ];
+        
+        // Guna gambar yang lebih stabil
+        const stableGambar = [
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLwBqpCrWI6hqfACLNDeDWogvXbR5Fj83F4anyFAg5T3X0NpmchB6fnY08cASahd6Bfvc8JVkOIXxZ6cqyfn7OBc6pQzyu1QIj3TrZZw&s=10",
+            "https://wallpapers.com/images/hd/upin-ipin-1920-x-1080-background-t1fijxrv2muisbsz.jpg",
+            "https://thfvnext.bing.com/th/id/OIP.3HjIV5OuuptFIzh255V2GQHaEK?o=7&cb=thfvnextrm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
+            "https://tse4.mm.bing.net/th/id/OIP.Ie80GMWNUwAjuHVGwIXCcQHaE8?cb=thfvnext&w=736&h=491&rs=1&pid=ImgDetMain&o=7&rm=3"
+        ];
+        
+        // Fungsi untuk dapatkan gambar seterusnya (bergilir)
+        function getNextGambar() {
+            gambarIndex = (gambarIndex + 1) % stableGambar.length;
+            return stableGambar[gambarIndex];
+        }
+        
+        // Fungsi untuk dapatkan gambar rawak
+        function getRandomGambar() {
+            const randomIndex = Math.floor(Math.random() * stableGambar.length);
+            return stableGambar[randomIndex];
+        }
+        
+        // Button HILANG
+        $('#btnHilang').on('click', function(){
+            $('#gambarMotor').hide();
+            alert('Gambar dah hilang! Tekan "Muncul & Tukar Gambar" untuk munculkan gambar baru');
+        });
+
+        // Button MUNCUL & TUKAR GAMBAR
+        $('#btnMuncul').on('click', function(){
+            // Tukar kepada gambar baru (bergilir)
+            const gambarBaru = getNextGambar();
+            $('#gambarMotor').attr('src', gambarBaru).show();
+            alert('Gambar muncul dengan imej baru! (Gambar ke-' + (gambarIndex + 1) + ')');
+        });
+
+        // MOUSEOVER (hover) pada gambar - tukar gambar lain
+        $('#gambarMotor').on('mouseenter', function(){
+            // Simpan gambar sebelum tukar
+            gambarSebelumHover = $('#gambarMotor').attr('src');
+            // Tukar kepada gambar rawak
+            const gambarHover = getRandomGambar();
+            $('#gambarMotor').attr('src', gambarHover);
+        });
+        
+        // MOUSEOUT (keluar dari gambar) - kembali ke gambar asal
+        $('#gambarMotor').on('mouseleave', function(){
+            if (gambarSebelumHover) {
+                $('#gambarMotor').attr('src', gambarSebelumHover);
+                gambarSebelumHover = "";
+            }
+        });
+
+        // Klik pada gambar - hilang perlahan dengan efek fadeOut
+        $('#gambarMotor').on('click', function(){
+            $(this).fadeOut(500);
+            alert('Gambar diklik! Hilang perlahan... Tekan "Muncul & Tukar Gambar" untuk munculkan gambar baru');
+        });
+        
+        // Optional: Double klik pada gambar - tukar gambar tanpa hilang
+        $('#gambarMotor').on('dblclick', function(){
+            const gambarBaru = getRandomGambar();
+            $(this).attr('src', gambarBaru);
+            alert('Gambar bertukar! (double click)');
+        });
+        
+    });
+    
+</script> 
+</body>
+</html>
