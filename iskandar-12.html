@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery - Effect Iskandar</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-size: 17px;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            text-align: center;
+            padding: 28px;
+            background: rgb(63, 153, 237);
+            color: black;
+        }
+
+        .container {
+            padding: 50px;
+        }
+
+        #diamond {
+            position: relative;
+            margin-top: 30px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>JQUERY EFFECT ISKANDAR</h1>
+    </div>
+
+    <div class="container">
+        <button id="animation">Animation</button>
+
+        <br><br>
+
+        <img
+            id="diamond"
+            src="https://preview.redd.it/how-to-get-the-pink-diamond-everytime-on-hard-mode-for-ps5-v0-pkvud9epvuu81.jpg?width=1000&format=pjpg&auto=webp&s=6c8c11c30eda3db55b7d0e9b436c841dad253859"
+            width="200"
+            alt="Pink Diamond"
+        >
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#animation").click(function () {
+                $("#diamond")
+                    .animate({ top: "200px" }, 1000)
+                    .animate({ left: "300px" }, 1000)
+                    .animate({ top: "0px" }, 1000)
+                    .animate({ left: "0px" }, 1000)
+                    .animate({
+                        width: "400px",
+                        opacity: 0
+                    }, 1000);
+            });
+        });
+    </script>
+
+</body>
+</html>
