@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage - Pengurusan Nama</title>
+    <style>
+        body { font-family: sans-serif; }
+        a { color: inherit; margin-right: 15px; cursor: pointer; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <h1 id="judul">Hello Leeya!</h1>
+    <a id="ganti">Tukar nama</a>
+    <a id="hapus">Padam nama</a>
+
+    <script>
+        const judul = document.getElementById('judul');
+        const btnGanti = document.getElementById('ganti');
+        const btnHapus = document.getElementById('hapus');
+
+        // --- NAME LOGIC ---
+        let nama = localStorage.getItem('nama');
+        
+        if (!nama) {
+            nama = prompt('Masukkan nama anda:');
+            if (nama) localStorage.setItem('nama', nama);
+        }
+        
+        judul.innerHTML = `Halo, ${nama || 'User'}!`;
+
+        btnGanti.addEventListener('click', (e) => {
+            const newNama = prompt('Masukkan nama baru anda:');
+            if (newNama) {
+                localStorage.setItem('nama', newNama);
+                location.reload(); 
+            }
+        });
+
+        btnHapus.addEventListener('click', () => {
+            localStorage.removeItem('nama');
+            location.reload();
+        });
+    </script>
+</body>
+</html>
