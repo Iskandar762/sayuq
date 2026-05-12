@@ -2,133 +2,275 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Web Local Storage - Mior</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Modern jQuery Tutorial</title>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f5f5f5;
-    }
 
-    /* HEADER (like your screenshot) */
-    .header {
-        background: #09e60d;
-        color: #333;
-        text-align: center;
-        padding: 40px 20px;
-        font-size: 28px;
-        font-weight: bold;
-        letter-spacing: 1px;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    /* SECTION BOX */
-    .container {
-        width: 80%;
-        margin: 40px auto;
-        background: white;
-        padding: 25px;
-        border-radius: 6px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    min-height:100vh;
+    padding:40px;
+}
 
-    h2 {
-        margin-bottom: 10px;
-    }
+/* CONTAINER */
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
 
-    p {
-        line-height: 1.8;
-        color: #333;
-    }
+/* HEADER */
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
 
-    /* highlight like your orange/red text */
-    .highlight-pink {
-        color: pink;
-        font-weight: bold;
-    }
+.header h1{
+    color:#333;
+    font-size:40px;
+    margin-bottom:10px;
+}
 
-    .highlight-red {
-        color: red;
-        font-weight: bold;
-    }
+.header p{
+    color:gray;
+}
 
-    /* INPUT AREA */
-    input {
-        width: 60%;
-        padding: 10px;
-        margin-top: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
+/* TITLE */
+.judul{
+    text-align:center;
+    margin-bottom:20px;
+    color:#444;
+    transition:0.3s;
+}
 
-    button {
-        padding: 10px 15px;
-        margin: 5px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: bold;
-    }
+/* TOGGLE STYLE */
+.style_baru{
+    background:black;
+    color:yellow;
+    padding:15px;
+    border-radius:10px;
+    transform:scale(1.03);
+}
 
-    .save { background: #4caf50; color: white; }
-    .show { background: #2196f3; color: white; }
-    .delete { background: #f44336; color: white; }
+/* BUTTON */
+.button-group{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+}
 
-    #output {
-        margin-top: 15px;
-        font-weight: bold;
-    }
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+    color:white;
+}
+
+#tombol{
+    background:#6c5ce7;
+}
+
+#tombol_2{
+    background:#00b894;
+}
+
+#clear{
+    background:#d63031;
+}
+
+button:hover{
+    transform:scale(1.05);
+    opacity:0.9;
+}
+
+/* TEXT */
+#P1{
+    text-align:center;
+    margin-bottom:25px;
+    font-size:20px;
+    color:#555;
+    min-height:50px;
+}
+
+/* INPUT */
+.input-box{
+    display:flex;
+    gap:10px;
+    margin-bottom:25px;
+}
+
+#item_baru{
+    flex:1;
+    padding:12px;
+    border:2px solid #ddd;
+    border-radius:10px;
+    outline:none;
+    font-size:16px;
+}
+
+#item_baru:focus{
+    border-color:#6c5ce7;
+}
+
+/* LIST */
+#list{
+    list-style:none;
+}
+
+#list li{
+    background:#f5f6fa;
+    margin-bottom:10px;
+    padding:15px;
+    border-radius:10px;
+    transition:0.3s;
+    border-left:5px solid #6c5ce7;
+}
+
+#list li:hover{
+    transform:translateX(5px);
+    background:#eaeaea;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-    WEB LOCAL STORAGE - MIOR
-</div>
-
-<!-- SECTION 1 -->
 <div class="container">
-    <h2>What is Local Storage?</h2>
-    <p>
-        Local storage is a web storage that allows the browser to store data permanently.
-        The data will remain even after the browser is closed.
-        <span class="highlight-pink">It is useful for saving user preferences</span> and settings.
+
+    <div class="header">
+        <h1>jQuery DOM Tutorial</h1>
+        <p>Belajar DOM Manipulation Dengan Design Modern</p>
+    </div>
+
+    <h2 class="judul">Tutorial DOM jQuery Syamsul</h2>
+
+    <div class="button-group">
+        <button id="tombol">Ubah Style</button>
+        <button id="tombol_2">Random Ayat</button>
+        <button id="clear">Padam List</button>
+    </div>
+
+    <p id="P1">
+        Selamat Datang Ke Tutorial jQuery
     </p>
-</div>
 
-<!-- SECTION 2 -->
-<div class="container">
-    <h2>Local Storage</h2>
+    <div class="input-box">
+        <input 
+            type="text" 
+            id="item_baru" 
+            placeholder="Tambah item baru lalu tekan Enter"
+        >
+    </div>
 
-    <input type="text" id="nameInput" placeholder="Enter anything (name, number, etc)">
+    <ul id="list">
+        <li>Item Default</li>
+    </ul>
 
-    <br>
-
-    <button class="save" onclick="saveData()">Save</button>
-    <button class="show" onclick="showData()">Show</button>
-    <button class="delete" onclick="deleteData()">Delete</button>
-
-    <p id="output"></p>
 </div>
 
 <script>
-function saveData() {
-    let value = document.getElementById("nameInput").value;
-    localStorage.setItem("data", value);
-    document.getElementById("output").innerHTML = "✔ Data Saved!";
-}
 
-function showData() {
-    let value = localStorage.getItem("data");
-    document.getElementById("output").innerHTML = "📦 Saved Data: " + value;
-}
+$(document).ready(function(){
 
-function deleteData() {
-    localStorage.removeItem("data");
-    document.getElementById("output").innerHTML = "❌ Data Deleted!";
-}
+    // TOGGLE STYLE
+    $('#tombol').click(function(){
+        $('.judul').toggleClass('style_baru');
+    });
+
+    // RANDOM TEXT
+    $('#tombol_2').click(function(){
+
+        var ayatRandom = [
+
+            '🔥 Saya Sedang Belajar jQuery!',
+            '😎 Saya Sayang Sir Shuk!',
+            '🚀 TQ Sir Shuk!',
+            '💻 Sir Shuk The Best!',
+
+        ];
+
+        // RANDOM NUMBER
+        var random = Math.floor(
+            Math.random() * ayatRandom.length
+        );
+
+        // DISPLAY RANDOM TEXT
+        $('#P1').html(
+            '<h2>' + ayatRandom[random] + '</h2>'
+        );
+
+    });
+
+    // ADD ITEM WITH ENTER
+    $('#item_baru').keyup(function(e){
+
+        if(e.which == 13){
+
+            var nilai = $(this).val();
+
+            if(nilai.trim() !== ''){
+
+                $('#list').prepend(
+                    '<li>✅ ' + nilai + '</li>'
+                );
+
+                $(this).val('');
+
+            }
+
+        }
+
+    });
+
+    // DELETE LIST
+    $('#clear').click(function(){
+
+        $('#list').empty();
+
+    });
+
+    // ARRAY
+    var aray_saya = [
+
+        "🍩 Donat",
+        "🍢 Sate",
+        "🍛 Nasi Goreng",
+        "🍗 Ayam Bakar",
+        "🍔 Burger"
+
+    ];
+
+    // LOOP ARRAY
+    $.each(aray_saya, function(i, val){
+
+        $('#list').append(
+            '<li>' + val + '</li>'
+        );
+
+    });
+
+});
+
 </script>
 
 </body>
