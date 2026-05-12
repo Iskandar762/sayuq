@@ -24,7 +24,6 @@
   --js-color: #f0db4f;
   --jquery-color: #0769ad;
   --storage-color: #9b59b6;
-  --websql-color: #e74c3c;
 }
 
 html { scroll-behavior: smooth; }
@@ -347,7 +346,6 @@ nav {
 .cat-tag.js    { color: var(--js-color);     border-color: rgba(240,219,79,0.4);  background: rgba(240,219,79,0.07); }
 .cat-tag.jquery{ color: var(--jquery-color); border-color: rgba(7,105,173,0.4);   background: rgba(7,105,173,0.07); }
 .cat-tag.storage{ color: var(--storage-color);border-color: rgba(155,89,182,0.4); background: rgba(155,89,182,0.07); }
-.cat-tag.websql{ color: var(--websql-color); border-color: rgba(231,76,60,0.4);   background: rgba(231,76,60,0.07); }
 
 .cat-count {
   font-family: 'DM Mono';
@@ -404,7 +402,6 @@ nav {
 .js-card.cat-js     { border-left: 2px solid rgba(240,219,79,0.4); }
 .js-card.cat-jquery { border-left: 2px solid rgba(7,105,173,0.5); }
 .js-card.cat-storage{ border-left: 2px solid rgba(155,89,182,0.5); }
-.js-card.cat-websql { border-left: 2px solid rgba(231,76,60,0.5); }
 
 .js-num {
   font-family: 'Bebas Neue';
@@ -482,6 +479,8 @@ nav {
   margin-top: auto;
   padding-top: 24px;
   border-top: 1px solid var(--line);
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .js-btn {
@@ -519,6 +518,7 @@ nav {
   align-items: center;
   justify-content: center;
   transition: all 0.3s;
+  flex-shrink: 0;
 }
 .js-card:hover .js-arrow { border-color: var(--accent); background: var(--accent); }
 
@@ -684,7 +684,7 @@ footer {
     <p class="hero-desc fade-up">Focuses on system development and troubleshooting. Building robust solutions one jobsheet at a time.</p>
     <div class="hero-stats fade-up">
       <div class="stat-item">
-        <span class="stat-num">14</span>
+        <span class="stat-num">15</span>
         <span class="stat-label">Completed</span>
       </div>
       <div class="stat-item">
@@ -692,7 +692,7 @@ footer {
         <span class="stat-label">In Progress</span>
       </div>
       <div class="stat-item">
-        <span class="stat-num">14</span>
+        <span class="stat-num">15</span>
         <span class="stat-label">Total</span>
       </div>
     </div>
@@ -868,76 +868,76 @@ footer {
 
     <div class="js-grid">
 
-<div class="js-card cat-js" onclick="playSoundAndGo('js7.html', 1)">
-  <div>
-    <div class="js-label">
-      <span class="js-label-text">Task 07</span>
-      <span class="js-status done">Done</span>
-    </div>
-    <div class="js-title">Jobsheet 7</div>
-    <div class="js-subtitle">JavaScript — DOM & Events</div>
-  </div>
-  <div class="js-bottom">
-    <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('js7.html', 1)">View Work</button>
-    <div class="js-arrow">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-    </div>
-  </div>
-  <div class="js-num">07</div>
-</div>
+      <div class="js-card cat-js" onclick="playSoundAndGo('js7.html', 1)">
+        <div>
+          <div class="js-label">
+            <span class="js-label-text">Task 07</span>
+            <span class="js-status done">Done</span>
+          </div>
+          <div class="js-title">Jobsheet 7</div>
+          <div class="js-subtitle">JavaScript — DOM & Events</div>
+        </div>
+        <div class="js-bottom">
+          <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('js7.html', 1)">View Work</button>
+          <div class="js-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </div>
+        <div class="js-num">07</div>
+      </div>
 
-<div class="js-card cat-js" onclick="playSoundAndGo('js8.html', 1)">
-  <div>
-    <div class="js-label">
-      <span class="js-label-text">Task 08</span>
-      <span class="js-status done">Done</span>
-    </div>
-    <div class="js-title">Jobsheet 8</div>
-    <div class="js-subtitle">JavaScript — Functions & Arrays</div>
-  </div>
-  <div class="js-bottom">
-    <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('js8.html', 1)">View Work</button>
-    <div class="js-arrow">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-    </div>
-  </div>
-  <div class="js-num">08</div>
-</div>
+      <div class="js-card cat-js" onclick="playSoundAndGo('js8.html', 1)">
+        <div>
+          <div class="js-label">
+            <span class="js-label-text">Task 08</span>
+            <span class="js-status done">Done</span>
+          </div>
+          <div class="js-title">Jobsheet 8</div>
+          <div class="js-subtitle">JavaScript — Functions & Arrays</div>
+        </div>
+        <div class="js-bottom">
+          <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('js8.html', 1)">View Work</button>
+          <div class="js-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </div>
+        <div class="js-num">08</div>
+      </div>
 
-<div class="js-card cat-js" onclick="playSoundAndGo('js9.html', 1)">
-  <div>
-    <div class="js-label">
-      <span class="js-label-text">Task 09</span>
-      <span class="js-status done">Done</span>
-    </div>
-    <div class="js-title">Jobsheet 9</div>
-    <div class="js-subtitle">JavaScript — OOP & AJAX</div>
-  </div>
-  <div class="js-bottom">
-    <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('js9.html', 1)">View Work 1</button>
-    <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('js9-1.html', 1)">View Work 2</button>
-    <div class="js-arrow">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-    </div>
-  </div>
-  <div class="js-num">09</div>
-</div>
-</div>
-</div>
-</div>
+      <div class="js-card cat-js" onclick="playSoundAndGo('js9.html', 1)">
+        <div>
+          <div class="js-label">
+            <span class="js-label-text">Task 09</span>
+            <span class="js-status done">Done</span>
+          </div>
+          <div class="js-title">Jobsheet 9</div>
+          <div class="js-subtitle">JavaScript — OOP & AJAX</div>
+        </div>
+        <div class="js-bottom">
+          <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('js9.html', 1)">View Work 1</button>
+          <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('js9-1.html', 1)">View Work 2</button>
+          <div class="js-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </div>
+        <div class="js-num">09</div>
+      </div>
 
-  <!-- ======= JQUERY (JS 10–12) ======= -->
+    </div>
+  </div>
+
+  <!-- ======= JQUERY (JS 10–13) ======= -->
   <div class="category-block">
     <div class="category-label">
       <div class="cat-line"></div>
       <div class="cat-tag jquery">jQuery</div>
-      <div class="cat-count">JS 10 – 12</div>
+      <div class="cat-count">JS 10 – 13</div>
       <div class="cat-line"></div>
     </div>
 
     <div class="js-grid">
 
-      <div class="js-card cat-jquery"  onclick="playSoundAndGo('jobsheet-10.html', 10)">
+      <div class="js-card cat-jquery" onclick="playSoundAndGo('jobsheet-10.html', 10)">
         <div>
           <div class="js-label">
             <span class="js-label-text">Task 10</span>
@@ -955,7 +955,7 @@ footer {
         <div class="js-num">10</div>
       </div>
 
-      <div class="js-card cat-jquery" onclick="; playSoundAndGo('jobsheet-11.html', 1)">
+      <div class="js-card cat-jquery" onclick="playSoundAndGo('jobsheet-11.html', 1)">
         <div>
           <div class="js-label">
             <span class="js-label-text">Task 11</span>
@@ -973,7 +973,7 @@ footer {
         <div class="js-num">11</div>
       </div>
 
-      <div class="js-card cat-jquery" onclick="; playSoundAndGo('jobsheet-12.html', 1)">
+      <div class="js-card cat-jquery" onclick="playSoundAndGo('jobsheet-12.html', 1)">
         <div>
           <div class="js-label">
             <span class="js-label-text">Task 12</span>
@@ -991,31 +991,18 @@ footer {
         <div class="js-num">12</div>
       </div>
 
-    </div>
-  </div>
-
-  <!-- ======= WEB STORAGE (JS 13) ======= -->
-  <div class="category-block">
-    <div class="category-label">
-      <div class="cat-line"></div>
-      <div class="cat-tag storage">Web Storage</div>
-      <div class="cat-count">JS 13</div>
-      <div class="cat-line"></div>
-    </div>
-
-    <div class="js-grid" style="grid-template-columns: repeat(3, 1fr);">
-
-      <div class="js-card cat-storage" style="grid-column: span 3;" onclick="showModal('Jobsheet 13', 'Web Storage — localStorage & sessionStorage')">
+      <!-- NEW: Jobsheet 13 — jQuery -->
+      <div class="js-card cat-jquery" style="grid-column: span 3;" onclick="playSoundAndGo('jobsheet-13.html', 1)">
         <div>
           <div class="js-label">
             <span class="js-label-text">Task 13</span>
             <span class="js-status done">Done</span>
           </div>
           <div class="js-title" style="font-size:2rem;">Jobsheet 13</div>
-          <div class="js-subtitle">Web Storage — localStorage & sessionStorage</div>
+          <div class="js-subtitle">jQuery — DOM Manipulation & Traversal</div>
         </div>
         <div class="js-bottom">
-          <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('jobsheet-13.html',1)">View Work</button>
+          <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('jobsheet-13.html', 1)">View Work</button>
           <div class="js-arrow">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </div>
@@ -1026,34 +1013,55 @@ footer {
     </div>
   </div>
 
-  <!-- ======= WEB SQL (JS 14) ======= -->
+  <!-- ======= WEB STORAGE (JS 14–15) ======= -->
   <div class="category-block">
     <div class="category-label">
       <div class="cat-line"></div>
-      <div class="cat-tag websql">Web SQL</div>
-      <div class="cat-count">JS 14</div>
+      <div class="cat-tag storage">Web Storage</div>
+      <div class="cat-count">JS 14 – 15</div>
       <div class="cat-line"></div>
     </div>
 
-    <div class="js-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="js-grid">
 
-      <div class="js-card cat-websql" style="grid-column: span 3;" onclick="playSoundAndGo('jobsheet-14.html',1)">
+      <div class="js-card cat-storage" onclick="playSoundAndGo('jobsheet-14.html', 1)">
         <div>
           <div class="js-label">
             <span class="js-label-text">Task 14</span>
             <span class="js-status done">Done</span>
           </div>
-          <div class="js-title" style="font-size:2rem;">Jobsheet 14</div>
-          <div class="js-subtitle">Web SQL — Client-Side Database</div>
+          <div class="js-title">Jobsheet 14</div>
+          <div class="js-subtitle">Web Storage — localStorage & sessionStorage</div>
         </div>
         <div class="js-bottom">
-          <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('jobsheet-14.html',1)')">View Work</button>
+          <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('jobsheet-14.html', 1)">View Work</button>
           <div class="js-arrow">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </div>
         </div>
-        <div class="js-num" style="font-size:7rem; bottom:10px; right:30px;">14</div>
+        <div class="js-num">14</div>
       </div>
+
+      <div class="js-card cat-storage" onclick="playSoundAndGo('jobsheet-15.html', 1)">
+        <div>
+          <div class="js-label">
+            <span class="js-label-text">Task 15</span>
+            <span class="js-status done">Done</span>
+          </div>
+          <div class="js-title">Jobsheet 15</div>
+          <div class="js-subtitle">Web Storage — Advanced Data Persistence</div>
+        </div>
+        <div class="js-bottom">
+          <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('jobsheet-15.html', 1)">View Work</button>
+          <div class="js-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </div>
+        <div class="js-num">15</div>
+      </div>
+
+      <!-- Empty filler to maintain 3-col grid balance -->
+      <div class="js-card cat-storage" style="opacity:0; pointer-events:none;"></div>
 
     </div>
   </div>
@@ -1070,7 +1078,7 @@ footer {
 <div class="modal" id="modalBox">
   <div class="modal-box">
     <div class="modal-tag">Status Update</div>
-    <div class="modal-title" id="modalTitle">Jobsheet 7</div>
+    <div class="modal-title" id="modalTitle">Jobsheet</div>
     <div class="modal-subtitle-text" id="modalSub" style="font-family:'DM Mono';font-size:0.7rem;color:var(--accent);letter-spacing:2px;margin-bottom:16px;"></div>
     <p class="modal-body">This jobsheet is currently in progress. Check back soon — it will be available once completed.</p>
     <button class="modal-close" onclick="closeModal()">Close</button>
