@@ -18,7 +18,6 @@
   --line: rgba(255,255,255,0.07);
   --text-dim: #5a6474;
 
-  /* Category colors */
   --html-color: #e34c26;
   --css-color: #264de4;
   --js-color: #f0db4f;
@@ -396,7 +395,6 @@ nav {
 .js-card:hover::after { top: 100%; }
 .js-card:hover { background: #0d1117; }
 
-/* Colored left border based on category */
 .js-card.cat-html   { border-left: 2px solid rgba(227,76,38,0.5); }
 .js-card.cat-css    { border-left: 2px solid rgba(38,77,228,0.5); }
 .js-card.cat-js     { border-left: 2px solid rgba(240,219,79,0.4); }
@@ -684,7 +682,7 @@ footer {
     <p class="hero-desc fade-up">Focuses on system development and troubleshooting. Building robust solutions one jobsheet at a time.</p>
     <div class="hero-stats fade-up">
       <div class="stat-item">
-        <span class="stat-num">15</span>
+        <span class="stat-num">16</span>
         <span class="stat-label">Completed</span>
       </div>
       <div class="stat-item">
@@ -692,7 +690,7 @@ footer {
         <span class="stat-label">In Progress</span>
       </div>
       <div class="stat-item">
-        <span class="stat-num">15</span>
+        <span class="stat-num">16</span>
         <span class="stat-label">Total</span>
       </div>
     </div>
@@ -926,12 +924,12 @@ footer {
     </div>
   </div>
 
-  <!-- ======= JQUERY (JS 10–13) ======= -->
+  <!-- ======= JQUERY (JS 10–14) ======= -->
   <div class="category-block">
     <div class="category-label">
       <div class="cat-line"></div>
       <div class="cat-tag jquery">jQuery</div>
-      <div class="cat-count">JS 10 – 13</div>
+      <div class="cat-count">JS 10 – 14</div>
       <div class="cat-line"></div>
     </div>
 
@@ -991,14 +989,13 @@ footer {
         <div class="js-num">12</div>
       </div>
 
-      <!-- NEW: Jobsheet 13 — jQuery -->
-      <div class="js-card cat-jquery" style="grid-column: span 3;" onclick="playSoundAndGo('jobsheet-13.html', 1)">
+      <div class="js-card cat-jquery" onclick="playSoundAndGo('jobsheet-13.html', 1)">
         <div>
           <div class="js-label">
             <span class="js-label-text">Task 13</span>
             <span class="js-status done">Done</span>
           </div>
-          <div class="js-title" style="font-size:2rem;">Jobsheet 13</div>
+          <div class="js-title">Jobsheet 13</div>
           <div class="js-subtitle">jQuery — DOM Manipulation & Traversal</div>
         </div>
         <div class="js-bottom">
@@ -1007,31 +1004,18 @@ footer {
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </div>
         </div>
-        <div class="js-num" style="font-size:7rem; bottom:10px; right:30px;">13</div>
+        <div class="js-num">13</div>
       </div>
 
-    </div>
-  </div>
-
-  <!-- ======= WEB STORAGE (JS 14–15) ======= -->
-  <div class="category-block">
-    <div class="category-label">
-      <div class="cat-line"></div>
-      <div class="cat-tag storage">Web Storage</div>
-      <div class="cat-count">JS 14 – 15</div>
-      <div class="cat-line"></div>
-    </div>
-
-    <div class="js-grid">
-
-      <div class="js-card cat-storage" onclick="playSoundAndGo('jobsheet-14.html', 1)">
+      <!-- Jobsheet 14 — jQuery (spans 2 columns) -->
+      <div class="js-card cat-jquery" style="grid-column: span 2;" onclick="playSoundAndGo('jobsheet-14.html', 1)">
         <div>
           <div class="js-label">
             <span class="js-label-text">Task 14</span>
             <span class="js-status done">Done</span>
           </div>
-          <div class="js-title">Jobsheet 14</div>
-          <div class="js-subtitle">Web Storage — localStorage & sessionStorage</div>
+          <div class="js-title" style="font-size:2rem;">Jobsheet 14</div>
+          <div class="js-subtitle">jQuery — Advanced Methods & Animations</div>
         </div>
         <div class="js-bottom">
           <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('jobsheet-14.html', 1)">View Work</button>
@@ -1039,8 +1023,22 @@ footer {
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </div>
         </div>
-        <div class="js-num">14</div>
+        <div class="js-num" style="font-size:7rem; bottom:10px; right:30px;">14</div>
       </div>
+
+    </div>
+  </div>
+
+  <!-- ======= WEB STORAGE (JS 15–16) ======= -->
+  <div class="category-block">
+    <div class="category-label">
+      <div class="cat-line"></div>
+      <div class="cat-tag storage">Web Storage</div>
+      <div class="cat-count">JS 15 – 16</div>
+      <div class="cat-line"></div>
+    </div>
+
+    <div class="js-grid">
 
       <div class="js-card cat-storage" onclick="playSoundAndGo('jobsheet-15.html', 1)">
         <div>
@@ -1049,7 +1047,7 @@ footer {
             <span class="js-status done">Done</span>
           </div>
           <div class="js-title">Jobsheet 15</div>
-          <div class="js-subtitle">Web Storage — Advanced Data Persistence</div>
+          <div class="js-subtitle">Web Storage — localStorage & sessionStorage</div>
         </div>
         <div class="js-bottom">
           <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('jobsheet-15.html', 1)">View Work</button>
@@ -1060,7 +1058,25 @@ footer {
         <div class="js-num">15</div>
       </div>
 
-      <!-- Empty filler to maintain 3-col grid balance -->
+      <div class="js-card cat-storage" onclick="playSoundAndGo('jobsheet-16.html', 1)">
+        <div>
+          <div class="js-label">
+            <span class="js-label-text">Task 16</span>
+            <span class="js-status done">Done</span>
+          </div>
+          <div class="js-title">Jobsheet 16</div>
+          <div class="js-subtitle">Web Storage — Advanced Data Persistence</div>
+        </div>
+        <div class="js-bottom">
+          <button class="js-btn" onclick="event.stopPropagation(); playSoundAndGo('jobsheet-16.html', 1)">View Work</button>
+          <div class="js-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </div>
+        <div class="js-num">16</div>
+      </div>
+
+      <!-- Filler untuk maintain 3-col grid -->
       <div class="js-card cat-storage" style="opacity:0; pointer-events:none;"></div>
 
     </div>
